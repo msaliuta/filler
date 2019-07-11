@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   choose_player.c                                    :+:      :+:    :+:   */
+/*   ft_strdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/11 03:16:18 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/11 20:33:46 by msaliuta         ###   ########.fr       */
+/*   Created: 2018/10/30 18:36:23 by msaliuta          #+#    #+#             */
+/*   Updated: 2019/07/11 20:42:57 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "libft.h"
 
-void		choose_player(t_game *game)
+void	ft_strdel(char **as)
 {
-	char *line;
-
-	get_next_line(0, &line);
-	if (ft_strstr(line, "p1"))
-	{
-		game->me = 'o';
-		game->opponent = 'x';
-	}
-	else
-	{
-		game->me = 'x';
-		game->opponent = 'o';
-	}
-	ft_strdel(&line);
+	if (as)
+		ft_memdel((void **)as);
 }

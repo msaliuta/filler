@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   choose_player.c                                    :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/11 03:16:18 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/11 20:33:46 by msaliuta         ###   ########.fr       */
+/*   Created: 2018/10/28 18:32:11 by msaliuta          #+#    #+#             */
+/*   Updated: 2018/10/28 18:49:58 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "libft.h"
 
-void		choose_player(t_game *game)
+void	ft_putnbr(int n)
 {
-	char *line;
-
-	get_next_line(0, &line);
-	if (ft_strstr(line, "p1"))
-	{
-		game->me = 'o';
-		game->opponent = 'x';
-	}
+	if (n == -2147483648)
+		ft_putstr("-2147483648");
 	else
 	{
-		game->me = 'x';
-		game->opponent = 'o';
+		if (n < 0)
+		{
+			ft_putchar('-');
+			n *= -1;
+		}
+		if (n >= 10)
+			ft_putnbr(n / 10);
+		ft_putchar((n % 10) + '0');
 	}
-	ft_strdel(&line);
 }

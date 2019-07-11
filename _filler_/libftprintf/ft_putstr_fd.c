@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   choose_player.c                                    :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/11 03:16:18 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/11 20:33:46 by msaliuta         ###   ########.fr       */
+/*   Created: 2018/10/28 18:25:10 by msaliuta          #+#    #+#             */
+/*   Updated: 2018/11/04 13:32:28 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "libft.h"
 
-void		choose_player(t_game *game)
+void	ft_putstr_fd(char const *s, int fd)
 {
-	char *line;
+	int k;
 
-	get_next_line(0, &line);
-	if (ft_strstr(line, "p1"))
+	k = -1;
+	if (s)
 	{
-		game->me = 'o';
-		game->opponent = 'x';
+		while (s[++k] != '\0')
+			ft_putchar_fd(s[k], fd);
 	}
-	else
-	{
-		game->me = 'x';
-		game->opponent = 'o';
-	}
-	ft_strdel(&line);
 }

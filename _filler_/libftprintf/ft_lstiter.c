@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   choose_player.c                                    :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/11 03:16:18 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/11 20:33:46 by msaliuta         ###   ########.fr       */
+/*   Created: 2018/10/30 18:31:54 by msaliuta          #+#    #+#             */
+/*   Updated: 2018/10/30 18:31:57 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "libft.h"
 
-void		choose_player(t_game *game)
+void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	char *line;
+	t_list	*next;
 
-	get_next_line(0, &line);
-	if (ft_strstr(line, "p1"))
+	while (lst)
 	{
-		game->me = 'o';
-		game->opponent = 'x';
+		next = lst->next;
+		f(lst);
+		lst = next;
 	}
-	else
-	{
-		game->me = 'x';
-		game->opponent = 'o';
-	}
-	ft_strdel(&line);
 }

@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   choose_player.c                                    :+:      :+:    :+:   */
+/*   ft_isupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/11 03:16:18 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/11 20:33:46 by msaliuta         ###   ########.fr       */
+/*   Created: 2018/10/27 18:43:43 by msaliuta          #+#    #+#             */
+/*   Updated: 2019/07/11 20:36:47 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "libft.h"
 
-void		choose_player(t_game *game)
+int	ft_isupper(int c)
 {
-	char *line;
-
-	get_next_line(0, &line);
-	if (ft_strstr(line, "p1"))
-	{
-		game->me = 'o';
-		game->opponent = 'x';
-	}
-	else
-	{
-		game->me = 'x';
-		game->opponent = 'o';
-	}
-	ft_strdel(&line);
+	if ((c >= (int)'A') && (c <= (int)'Z'))
+		return (1);
+	return (0);
 }

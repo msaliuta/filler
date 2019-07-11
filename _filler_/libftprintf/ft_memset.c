@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   choose_player.c                                    :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/11 03:16:18 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/11 20:33:46 by msaliuta         ###   ########.fr       */
+/*   Created: 2018/10/27 18:50:33 by msaliuta          #+#    #+#             */
+/*   Updated: 2018/11/04 14:31:24 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "libft.h"
 
-void		choose_player(t_game *game)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	char *line;
+	char	*ptr;
+	size_t	i;
 
-	get_next_line(0, &line);
-	if (ft_strstr(line, "p1"))
-	{
-		game->me = 'o';
-		game->opponent = 'x';
-	}
-	else
-	{
-		game->me = 'x';
-		game->opponent = 'o';
-	}
-	ft_strdel(&line);
+	ptr = (char*)b;
+	i = -1;
+	while (++i < len)
+		ptr[i] = (char)c;
+	return (b);
 }

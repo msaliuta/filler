@@ -1,41 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   distance_to_cell.c                                 :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/11 03:18:41 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/12 01:19:41 by msaliuta         ###   ########.fr       */
+/*   Created: 2019/07/03 04:25:02 by msaliuta          #+#    #+#             */
+/*   Updated: 2019/07/11 20:53:38 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "libft.h"
 
-int		abs(int n)
-{
-	if (n < 0)
-		n *= -1;
-	return (n);
-}
-
-int		distance_to_cell(t_map map, char me, int x, int y)
+char	*ft_strchr(const char *s, int c)
 {
 	int		i;
-	int		j;
-	int		min;
+	char	*a;
 
-	min = 10000;
-	i = -1;
-	while (++i < map.x)
+	a = (char*)s;
+	i = 0;
+	if (c == 256)
+		return ("");
+	while (a[i])
 	{
-		j = -1;
-		while (++j < map.y)
-		{
-			map.int_array[i][j] = abs(x - i) + abs(y - j);
-			if (ft_tolower(map.array[i][j]) == me && map.int_array[i][j] < min)
-				min = map.int_array[i][j];
-		}
+		if (a[i] == (char)c)
+			return (&a[i]);
+		i++;
 	}
-	return (min);
+	if (c == 0)
+		return (&a[i]);
+	return (0);
 }

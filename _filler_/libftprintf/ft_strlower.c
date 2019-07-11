@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   choose_player.c                                    :+:      :+:    :+:   */
+/*   ft_strlower.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/11 03:16:18 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/11 20:33:46 by msaliuta         ###   ########.fr       */
+/*   Created: 2019/07/03 04:25:04 by msaliuta          #+#    #+#             */
+/*   Updated: 2019/07/06 14:49:22 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "libft.h"
 
-void		choose_player(t_game *game)
+void	ft_strlower(char *s)
 {
-	char *line;
+	int i;
 
-	get_next_line(0, &line);
-	if (ft_strstr(line, "p1"))
+	i = -1;
+	while (s[++i])
 	{
-		game->me = 'o';
-		game->opponent = 'x';
+		if (s[i] >= 'A' && s[i] <= 'Z')
+			s[i] += 32;
 	}
-	else
-	{
-		game->me = 'x';
-		game->opponent = 'o';
-	}
-	ft_strdel(&line);
 }

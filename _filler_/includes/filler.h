@@ -6,7 +6,7 @@
 /*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/02 11:39:25 by osamoile          #+#    #+#             */
-/*   Updated: 2019/07/11 03:27:23 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/11 22:01:40 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct	s_game
 
 }				t_game;
 
+int				main(void);
 void			create_map(char *plateau, t_game *game);
 void			read_map(t_game *game);
 t_piece			read_piece(char *params);
@@ -56,5 +57,6 @@ void			choose_player(t_game *game);
 int				top(t_map map, char player);
 int				left(t_map map, char player);
 int				way_closed(t_game *game, int me_top);
+char			**ft_chartable(int x, int y);
 
 #endif

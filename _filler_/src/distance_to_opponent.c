@@ -6,11 +6,18 @@
 /*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/24 15:31:49 by osamoile          #+#    #+#             */
-/*   Updated: 2019/07/11 03:20:27 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/12 01:19:52 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+int		abs1(int n)
+{
+	if (n < 0)
+		n *= -1;
+	return (n);
+}
 
 void	distance_to_opponent(t_map map, char opponent)
 {
@@ -33,8 +40,8 @@ void	distance_to_opponent(t_map map, char opponent)
 				while (++m < map.y)
 				{
 					if (ft_tolower(map.array[n][m]) == opponent &&
-						ft_abs(n - i) + ft_abs(m - j) < map.int_array[i][j])
-						map.int_array[i][j] = ft_abs(n - i) + ft_abs(m - j);
+						abs1(n - i) + abs1(m - j) < map.int_array[i][j])
+						map.int_array[i][j] = abs1(n - i) + abs1(m - j);
 				}
 			}
 		}

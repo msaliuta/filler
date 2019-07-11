@@ -1,41 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   distance_to_cell.c                                 :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/11 03:18:41 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/12 01:19:41 by msaliuta         ###   ########.fr       */
+/*   Created: 2019/07/03 04:25:05 by msaliuta          #+#    #+#             */
+/*   Updated: 2019/07/11 20:41:43 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "libft.h"
 
-int		abs(int n)
+char	*ft_strnew(size_t size)
 {
-	if (n < 0)
-		n *= -1;
-	return (n);
-}
+	char	*s;
+	size_t	i;
 
-int		distance_to_cell(t_map map, char me, int x, int y)
-{
-	int		i;
-	int		j;
-	int		min;
-
-	min = 10000;
+	if (!(s = (char*)malloc(size + 1)))
+		return (NULL);
 	i = -1;
-	while (++i < map.x)
-	{
-		j = -1;
-		while (++j < map.y)
-		{
-			map.int_array[i][j] = abs(x - i) + abs(y - j);
-			if (ft_tolower(map.array[i][j]) == me && map.int_array[i][j] < min)
-				min = map.int_array[i][j];
-		}
-	}
-	return (min);
+	while (++i < size)
+		s[i] = '\0';
+	s[i] = '\0';
+	return (s);
 }

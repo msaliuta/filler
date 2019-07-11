@@ -1,41 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   distance_to_cell.c                                 :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/11 03:18:41 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/12 01:19:41 by msaliuta         ###   ########.fr       */
+/*   Created: 2018/11/04 14:17:00 by msaliuta          #+#    #+#             */
+/*   Updated: 2019/07/12 01:10:56 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "libft.h"
 
-int		abs(int n)
+char	*ft_strstr(const char *haystack, const char *needle)
 {
-	if (n < 0)
-		n *= -1;
-	return (n);
-}
+	size_t	i;
+	size_t	j;
 
-int		distance_to_cell(t_map map, char me, int x, int y)
-{
-	int		i;
-	int		j;
-	int		min;
-
-	min = 10000;
+	if (!*needle)
+		return ((char*)haystack);
 	i = -1;
-	while (++i < map.x)
+	while (haystack[++i])
 	{
-		j = -1;
-		while (++j < map.y)
+		j = 0;
+		while (needle[j] == haystack[i + j])
 		{
-			map.int_array[i][j] = abs(x - i) + abs(y - j);
-			if (ft_tolower(map.array[i][j]) == me && map.int_array[i][j] < min)
-				min = map.int_array[i][j];
+			if (needle[j + 1] == '\0')
+				return ((char*)(haystack + i));
+			j++;
 		}
 	}
-	return (min);
+	return (NULL);
 }

@@ -6,14 +6,14 @@
 #    By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/01 15:53:40 by osamoile          #+#    #+#              #
-#    Updated: 2019/07/11 04:21:10 by msaliuta         ###   ########.fr        #
+#    Updated: 2019/07/12 00:40:16 by msaliuta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =			msaliuta.filler
 INC =			-I ./includes \
-				-I ./libft/includes
-LIB =			-lft -L ./libft
+				-I ./libftprintf/includes
+LIB =			-lft -L ./libftprintf
 FLAGS =			-Wall -Wextra -Werror
 LIST =			main \
 				read_piece \
@@ -30,7 +30,8 @@ LIST =			main \
 				distance_to_opponent\
 				top\
 				left\
-				way_closed
+				way_closed\
+				ft_chartable\
 
 OBJ =			$(addprefix obj/, $(addsuffix .o, $(LIST)))
 
@@ -40,18 +41,18 @@ obj/%.o: src/%.c
 	@gcc $(FLAGS) -c $< -o $@ $(INC)
 
 $(NAME): obj $(OBJ)
-	@make -C libft
+	@make -C libftprintf
 	@gcc $(OBJ) -o $(NAME) $(LIB)
 
 obj:
 	@mkdir obj
 
 clean:
-	@make -C libft clean
+	@make -C libftprintf clean
 	@rm -rf obj
 	
 fclean: clean
-	@make -C libft fclean
+	@make -C libftprintf fclean
 	@rm -f $(NAME)
 
 re: fclean all

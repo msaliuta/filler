@@ -1,41 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   distance_to_cell.c                                 :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/11 03:18:41 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/12 01:19:41 by msaliuta         ###   ########.fr       */
+/*   Created: 2018/10/30 18:32:38 by msaliuta          #+#    #+#             */
+/*   Updated: 2019/07/11 20:47:41 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "libft.h"
+#include <stdlib.h>
 
-int		abs(int n)
+void	*ft_memalloc(size_t size)
 {
-	if (n < 0)
-		n *= -1;
-	return (n);
-}
+	size_t	i;
+	char	*ptr;
 
-int		distance_to_cell(t_map map, char me, int x, int y)
-{
-	int		i;
-	int		j;
-	int		min;
-
-	min = 10000;
 	i = -1;
-	while (++i < map.x)
-	{
-		j = -1;
-		while (++j < map.y)
-		{
-			map.int_array[i][j] = abs(x - i) + abs(y - j);
-			if (ft_tolower(map.array[i][j]) == me && map.int_array[i][j] < min)
-				min = map.int_array[i][j];
-		}
-	}
-	return (min);
+	ptr = (char*)malloc(size);
+	if (ptr)
+		while (++i < size)
+			ptr[i] = 0;
+	else
+		return (NULL);
+	ft_bzero(ptr, size);
+	return (ptr);
 }

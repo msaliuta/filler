@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   left.c                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/11 03:22:12 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/11 20:39:17 by msaliuta         ###   ########.fr       */
+/*   Created: 2018/10/27 18:47:31 by msaliuta          #+#    #+#             */
+/*   Updated: 2018/11/01 17:19:01 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "libft.h"
 
-int		left(t_map map, char player)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int		i;
-	int		j;
+	unsigned char	*s1c;
+	unsigned char	*s2c;
+	size_t			i;
 
-	j = -1;
-	while (++j < map.y)
-	{
-		i = -1;
-		while (++i < map.x)
-		{
-			if (ft_tolower(map.array[i][j]) == player)
-				return (j);
-		}
-	}
+	s1c = (unsigned char*)s1;
+	s2c = (unsigned char*)s2;
+	i = -1;
+	while (++i < n)
+		if (s1c[i] != s2c[i])
+			return (s1c[i] - s2c[i]);
 	return (0);
 }
