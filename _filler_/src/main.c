@@ -6,7 +6,7 @@
 /*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/24 15:31:49 by osamoile          #+#    #+#             */
-/*   Updated: 2019/07/11 03:17:13 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/12 03:30:16 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,13 @@ int			main(void)
 	t_game	game;
 
 	game.piece.array = NULL;
-	choose_player(&game);
+	get_p(&game);
 	while (1)
 	{
 		get_next_line(0, &line);
 		if (!ft_strstr(line, "Plateau"))
 			return (0);
-		if (game.map.array == NULL)
-			create_map(line, &game);
+		game.map.array == NULL ? create_map(line, &game) : 0;
 		ft_strdel(&line);
 		read_map(&game);
 		get_next_line(0, &line);

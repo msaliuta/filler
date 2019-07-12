@@ -6,7 +6,7 @@
 /*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/02 11:39:25 by osamoile          #+#    #+#             */
-/*   Updated: 2019/07/11 22:01:40 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/12 03:30:14 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct	s_game
 }				t_game;
 
 int				main(void);
+void			get_p(t_game *game);
 void			create_map(char *plateau, t_game *game);
 void			read_map(t_game *game);
 t_piece			read_piece(char *params);
@@ -53,7 +54,6 @@ void			start_end_x(t_piece *piece, int *end_x);
 void			start_end_y(t_piece *piece, int *end_y);
 void			reshape(t_piece *piece);
 int				distance_sum(t_game *game, int *sum, int i, int j);
-void			choose_player(t_game *game);
 int				top(t_map map, char player);
 int				left(t_map map, char player);
 int				way_closed(t_game *game, int me_top);

@@ -6,7 +6,7 @@
 #    By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/01 15:53:40 by osamoile          #+#    #+#              #
-#    Updated: 2019/07/12 00:40:16 by msaliuta         ###   ########.fr        #
+#    Updated: 2019/07/12 03:30:12 by msaliuta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ INC =			-I ./includes \
 				-I ./libftprintf/includes
 LIB =			-lft -L ./libftprintf
 FLAGS =			-Wall -Wextra -Werror
-LIST =			main \
+LIST =			main\
+				get_p\
 				read_piece \
 				create_map \
 				distance_sum \
@@ -25,7 +26,6 @@ LIST =			main \
 				start_end_x\
 				start_end_y\
 				reshape\
-				choose_player\
 				distance_to_cell\
 				distance_to_opponent\
 				top\
