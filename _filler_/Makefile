@@ -3,56 +3,84 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+         #
+#    By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/08/01 15:53:40 by osamoile          #+#    #+#              #
-#    Updated: 2019/07/12 03:30:12 by msaliuta         ###   ########.fr        #
+#    Created: 2019/07/13 16:12:17 by msaliuta          #+#    #+#              #
+#    Updated: 2019/07/13 17:18:21 by msaliuta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME =			msaliuta.filler
-INC =			-I ./includes \
-				-I ./libftprintf/includes
-LIB =			-lft -L ./libftprintf
-FLAGS =			-Wall -Wextra -Werror
-LIST =			main\
-				get_p\
-				read_piece \
-				create_map \
-				distance_sum \
-				analyze_map \
-				put_piece\
-				read_map\
-				start_end_x\
-				start_end_y\
-				reshape\
-				distance_to_cell\
-				distance_to_opponent\
-				top\
-				left\
-				way_closed\
-				ft_chartable\
+NAME	=	msaliuta.filler
+CMPL	=	cc
+CFLG	=	$(addprefix -W, all extra error)
+LIBD	=	libftprintf
+BNSD	=	bonus_part
+SRCD	=	src
+INCD	=	includes
+OBJD	=	objs
+BOJD	=	boun
+INCS	=	-I$(addprefix $(LIBD)/, $(INCD)) -I $(INCD)
+VISL	=	visualizer
+BNSS	=	init_wins.c\
+			main.c\
+			over.c\
+			print_line.c\
+			read_p.c\
+			read_s.c\
+			show.c\
+			size_check.c
 
-OBJ =			$(addprefix obj/, $(addsuffix .o, $(LIST)))
+SRCS	=	analyze_map.c\
+			create_map.c\
+			distance_sum.c\
+			distance_to_cell.c\
+			distance_to_opponent.c\
+			ft_chartable.c\
+			get_p.c\
+			left.c\
+			main.c\
+			put_piece.c\
+			read_map.c\
+			read_piece.c\
+			reshape.c\
+			start_end_x.c\
+			start_end_y.c\
+			top.c\
+			way_closed.c
+
+
+BOJS	=	$(addprefix $(BOJD)/, $(BNSS:.c=.o))
+OBJS	=	$(addprefix $(OBJD)/, $(SRCS:.c=.o))
 
 all: $(NAME)
 
-obj/%.o: src/%.c
-	@gcc $(FLAGS) -c $< -o $@ $(INC)
+$(NAME): $(OBJS)
+	$(MAKE) -C $(LIBD)
+	$(CMPL) $(CFLG) -o $(NAME) $^ -L$(LIBD) -lft $(INCS)
 
-$(NAME): obj $(OBJ)
-	@make -C libftprintf
-	@gcc $(OBJ) -o $(NAME) $(LIB)
-
-obj:
-	@mkdir obj
+$(OBJD)/%.o: $(SRCD)/%.c
+	@mkdir -p $(OBJD)
+	$(CMPL) $(CFLG) -o $@ -c $< $(INCS)
 
 clean:
-	@make -C libftprintf clean
-	@rm -rf obj
-	
-fclean: clean
-	@make -C libftprintf fclean
-	@rm -f $(NAME)
+	@$(MAKE) -C $(LIBD) clean
+	@rm -rf $(OBJD)
 
-re: fclean all
+fclean: clean
+	$(MAKE) -C $(LIBD) fclean
+	rm -f $(NAME)
+
+re:
+	$(MAKE) fclean
+	$(MAKE) all
+
+.PHONY: all clean fclean re bonus
+
+bonus: $(VISL)
+
+$(VISL): $(BOJS)
+	$(CMPL) -o $(VISL) $^ -L$(LIBD) -lft -lncurses
+	
+$(BOJD)/%.o: $(BNSD)/%.c
+	mkdir -p $(BOJD)
+	$(CMPL) $(CFLG) -c $< -o $@ -L$(LIBD) $(INCS)

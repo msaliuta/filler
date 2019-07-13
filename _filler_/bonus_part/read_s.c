@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_chartable.c                                     :+:      :+:    :+:   */
+/*   read_s.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/11 19:57:05 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/13 16:32:16 by msaliuta         ###   ########.fr       */
+/*   Created: 2019/07/13 16:01:05 by msaliuta          #+#    #+#             */
+/*   Updated: 2019/07/13 16:09:57 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "bonus.h"
 
-char	**ft_chartable(int x, int y)
+void	read_sizes(char *line, t_visual *v)
 {
-	char	**table;
-	int		i;
+	char	**nums;
 
-	table = (char**)ft_memalloc((x + 1) * sizeof(char*));
-	table[x] = 0;
-	i = -1;
-	while (++i < x)
-		table[i] = ft_strnew(y);
-	return (table);
+	nums = ft_strsplit(line, ' ');
+	v->m_heigth = ft_atoi(nums[1]);
+	v->m_width = ft_atoi(nums[2]);
+	ft_arrclr(nums);
 }
