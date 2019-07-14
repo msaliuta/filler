@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filler.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 13:24:46 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/13 16:32:41 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/14 20:27:41 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,48 +15,96 @@
 
 # include "libft.h"
 
-typedef struct	s_map
+typedef struct 		s_help
 {
-	char	**array;
-	int		x;
-	int		y;
-	int		**int_array;
-}				t_map;
+	int				x;
+	int 			n;
+	int				s_x;
+	int				s_n;
+}					t_help;
 
-typedef struct	s_piece
+typedef struct		s_token
 {
-	char	**array;
-	int		x;
-	int		y;
-	int		start_x;
-	int		start_y;
-}				t_piece;
+	t_help			help;
+	int				final_x;
+	int				final_n;
+	int				end_x;
+	int				end_n;
+	int				contact;
+	int				tmp_x;
+	int				tmp_n;
+	int				nbr_contact;
+	char			**piece;
+	int				real_size_x;
+	int				real_size_n;
+}					t_token;
 
-typedef struct	s_game
+typedef struct		s_map
 {
-	t_piece	piece;
-	t_map	map;
-	char	me;
-	char	opponent;
+	t_help			help;
+	char			**map;
+	char			*op;
+	int				pos_enemy_x;
+	int				pos_enemy_n;
+	char			*me;
+}					t_map;
 
-}				t_game;
 
-int				main(void);
-void			get_p(t_game *game);
-void			create_map(char *plateau, t_game *game);
-void			read_map(t_game *game);
-t_piece			read_piece(char *params);
-int				distance_to_cell(t_map map, char me, int x, int y);
-void			distance_to_opponent(t_map map, char opponent);
-void			analyze_map(t_game *game);
-void			put_piece(t_game *game, int *put_x, int *put_y);
-void			start_end_x(t_piece *piece, int *end_x);
-void			start_end_y(t_piece *piece, int *end_y);
-void			reshape(t_piece *piece);
-int				distance_sum(t_game *game, int *sum, int i, int j);
-int				top(t_map map, char player);
-int				left(t_map map, char player);
-int				way_closed(t_game *game, int me_top);
-char			**ft_chartable(int x, int y);
+/*
+**main.c
+*/
+
+void				get_real_piece_size(t_token *p);
+void				get_piece(t_token *p);
+void				get_piece_size(char *line, t_token *p);
+void				get_p(t_map *map);
+
+/*
+**ft_parcing.c
+*/
+
+void				get_strat_pos(t_map *map);
+void				get_map(t_map *map);
+void				get_map_size(char *line, t_map *map);
+int					get_the_ret(t_map *map, t_token *p);
+
+/*
+**play.c
+*/
+
+int					go_contact1(t_map *map, t_token *p);
+int					go_contact2(t_map *map, t_token *p);
+int					big_map(t_map *map, t_token *p);
+int					small_map(t_map *map, t_token *p);
+int					play(t_map *map, t_token *p);
+
+/*
+**play2.c
+*/
+
+void				get_contact(t_token *p, t_map *map);
+int					count_contact(t_map *map, t_token *p, int y, int x);
+int					algo3(t_map *map, t_token *p);
+int					algo1(t_map *map, t_token *p);
+int					algo1_2(t_map *map, t_token *p);
+
+/*
+**tools.c
+*/
+
+int					is_number(char c);
+int					is_placable(int i, int i2, t_map *map, t_token *p);
+void				print_result(t_token *p, t_map *map);
+int					last_try(t_map *map, t_token *p);
+void				init_struct(t_map *map, t_token *p);
+
+/*
+**tools2.c
+*/
+
+int					is_placable2(t_token *p, int count, int i, int i2);
+int					algo3_2(int nbr_contact, t_token *p, t_map *map);
+int					algo2(t_map *map, t_token *p);
+int					algo2_2(t_map *map, t_token *p);
 
 #endif

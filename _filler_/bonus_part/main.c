@@ -6,7 +6,7 @@
 /*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 14:29:43 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/13 16:09:56 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/14 14:26:48 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ int		main(void)
 		if (ft_strstr(line, "0123456789"))
 		{
 			show_map(v);
-			show_scale(v->scale, v->p1_points, v->p2_points);
+			//show_scale(v->scale, v->p1_points, v->p2_points);
 		}
 		if (ft_strstr(line, "== X"))
 			break ;
 		ft_strdel(&line);
 		usleep(-100 * (v->m_heigth - 100));
 	}
-	show_winner(v->p1_points, v->p2_points, v);
+	//show_winner(v->p1_points, v->p2_points, v);
 	over(v);
 	return (0);
 }

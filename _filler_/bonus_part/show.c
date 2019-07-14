@@ -6,7 +6,7 @@
 /*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 16:06:21 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/13 16:59:10 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/14 14:25:46 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	show_map(t_visual *v)
 	wrefresh(v->map);
 }
 
-void	show_scale(WINDOW *scale, int p1, int p2)
+/*void	show_scale(WINDOW *scale, int p1, int p2)
 {
 	char	*n;
 	int		i;
@@ -50,9 +50,9 @@ void	show_scale(WINDOW *scale, int p1, int p2)
 	while (i++ < SCALE_LEN)
 		mvwaddstr(scale, 2, 2 * i, RED_LEAF);
 	wrefresh(scale);
-}
+}*/
 
-void	show_winner(int p1, int p2, t_visual *v)
+/*void	show_winner(int p1, int p2, t_visual *v)
 {
 	char	*text;
 
@@ -63,4 +63,4 @@ void	show_winner(int p1, int p2, t_visual *v)
 	wattron(v->scale, A_BOLD | COLOR_PAIR(4));
 	mvwaddstr(v->scale, 3, SCALE_LEN - ft_strlen(text) / 2, text);
 	wrefresh(v->scale);
-}
+}*/

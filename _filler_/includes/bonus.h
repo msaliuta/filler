@@ -6,7 +6,7 @@
 /*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 16:07:29 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/13 17:07:46 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/14 14:52:29 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@
 # include <locale.h>
 # include "libft.h"
 
+# define BRIGHT_WHITE  15
 # define COLOR_PINK "\033[1;35m"
 # define COLOR_RESET "\033[0m"
 # define DELAY 10000
 # define SCALE_LEN 40
 # define LBL_IND 15
-# define GREEN_LEAF "\xF0\x9F\x8D\x80"
-# define RED_LEAF "\xF0\x9F\x8D\x81"
+# define GREEN_LEAF "\xF0\x9F\x99\x80"
+# define RED_LEAF "\xF0\x9F\x99\x88"
 
 typedef struct	s_visual
 {
