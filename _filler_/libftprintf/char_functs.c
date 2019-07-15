@@ -6,7 +6,7 @@
 /*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 04:25:14 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/08 19:12:33 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/15 14:35:11 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,39 +39,39 @@ void	char_for_ptint(t_pf_env *o, int n)
 
 void	process_char(t_pf_env *o, char type)
 {
-	char	*stmp;
-	int		ctmp;
+	char	*stemp;
+	int		ctemp;
 
 	if (o->flmd.minus)
 		o->flmd.zero = 0;
 	if (type == 's')
 	{
-		init_str_arg(o, &stmp);
-		if (stmp == NULL)
+		init_str_arg(o, &stemp);
+		if (stemp == NULL)
 			return (str_for_print(o, 0));
 		else if (o->flmd.prec)
-			o->out = ft_strdup((char*)stmp);
+			o->out = ft_strdup((char*)stemp);
 		else
 			o->out = ft_strdup("\0");
 		str_print(o);
 	}
 	else if (type == 'c')
 	{
-		init_char_arg(o, &ctmp);
-		char_print(o, ctmp);
+		init_char_arg(o, &ctemp);
+		char_print(o, ctemp);
 	}
 }
 
-void	init_char_arg(t_pf_env *o, int *tmp)
+void	init_char_arg(t_pf_env *o, int *temp)
 {
 	if (o->tag.tag)
 	{
 		va_copy(o->ap[0], o->ap[1]);
 		while (--o->tag.pos >= 0)
-			*tmp = va_arg(o->ap[0], int);
+			*temp = va_arg(o->ap[0], int);
 		return ;
 	}
-	*tmp = va_arg(o->ap[0], int);
+	*temp = va_arg(o->ap[0], int);
 }
 
 void	char_print(t_pf_env *o, char c)

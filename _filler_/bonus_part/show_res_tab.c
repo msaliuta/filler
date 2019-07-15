@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmaps.c                                        :+:      :+:    :+:   */
+/*   show_res_tab.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/30 18:32:03 by msaliuta          #+#    #+#             */
-/*   Updated: 2018/10/30 18:32:05 by msaliuta         ###   ########.fr       */
+/*   Created: 2019/07/15 19:26:03 by msaliuta          #+#    #+#             */
+/*   Updated: 2019/07/15 19:27:29 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "bonus.h"
 
-t_list		*ft_lstmaps(t_list *lst, t_list *(*f)(t_list *elem))
+void	show_res_tab(WINDOW *res_tab, int p1, int p2)
 {
-	t_list		*new;
-	t_list		*list;
+	char	*n;
 
-	if (!lst)
-		return (NULL);
-	list = f(lst);
-	new = list;
-	while (lst->next)
-	{
-		lst = lst->next;
-		if (!(list->next = f(lst)))
-		{
-			free(list->next);
-			return (NULL);
-		}
-		list = list->next;
-	}
-	return (new);
+	n = ft_itoa(p1);
+	mvwaddstr(res_tab, 5, 15, n);
+	ft_strdel(&n);
+	n = ft_itoa(p2);
+	mvwaddstr(res_tab, 5, LEN_RES - 15, n);
+	ft_strdel(&n);
+	mvwaddstr(res_tab, 5, 10, CAT);
+	mvwaddstr(res_tab, 5, LEN_RES - 10, MONKEY);
+	wrefresh(res_tab);
 }

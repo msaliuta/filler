@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmap.c                                        :+:      :+:    :+:   */
+/*   ft_strmaps.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,21 +12,21 @@
 
 #include "libft.h"
 
-char	*ft_strmap(char const *s, char (*f)(char))
+char	*ft_strmaps(char const *s, char (*f)(char))
 {
 	int		i;
-	char	*mappedstr;
+	char	*mapspedstr;
 
 	if (s == NULL || f == NULL)
 		return (NULL);
-	mappedstr = (char*)malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (mappedstr == NULL)
+	mapspedstr = (char*)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (mapspedstr == NULL)
 		return (NULL);
 	i = -1;
 	while (s[++i])
 	{
-		mappedstr[i] = f(s[i]);
+		mapspedstr[i] = f(s[i]);
 	}
-	mappedstr[i] = '\0';
-	return (mappedstr);
+	mapspedstr[i] = '\0';
+	return (mapspedstr);
 }

@@ -6,36 +6,36 @@
 /*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 04:25:11 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/08 19:12:33 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/15 14:35:11 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	init_long_argm(t_pf_env *o, long *tmp)
+void	init_long_argm(t_pf_env *o, long *temp)
 {
 	if (o->tag.tag)
 	{
 		va_copy(o->ap[0], o->ap[1]);
 		while (--o->tag.pos >= 0)
-			*tmp = va_arg(o->ap[0], long);
+			*temp = va_arg(o->ap[0], long);
 		return ;
 	}
-	*tmp = va_arg(o->ap[0], long);
+	*temp = va_arg(o->ap[0], long);
 }
 
 void	process_int(t_pf_env *o)
 {
-	long tmp;
+	long temp;
 	long i;
 
-	init_long_argm(o, &tmp);
-	i = (long long)tmp;
+	init_long_argm(o, &temp);
+	i = (long long)temp;
 	if (o->flmd.minus == 1)
 		o->flmd.zero = 0;
 	if (o->flmd.prec >= 0)
 		o->flmd.zero = 0;
-	if (tmp == LLONG_MIN || tmp == LONG_MIN)
+	if (temp == LLONG_MIN || temp == LONG_MIN)
 		o->out = ft_strdup("-9223372036854775808");
 	else if (o->mod == Z)
 		o->out = ft_itoa((size_t)i);
@@ -53,38 +53,38 @@ void	process_int(t_pf_env *o)
 	digit_print(o);
 }
 
-void	init_double_argm(t_pf_env *o, double *tmp)
+void	init_double_argm(t_pf_env *o, double *temp)
 {
 	if (o->tag.tag)
 	{
 		va_copy(o->ap[0], o->ap[1]);
 		while (--o->tag.pos >= 0)
-			*tmp = va_arg(o->ap[0], double);
+			*temp = va_arg(o->ap[0], double);
 		return ;
 	}
-	*tmp = va_arg(o->ap[0], double);
+	*temp = va_arg(o->ap[0], double);
 }
 
 void	process_unsint(t_pf_env *o, char type)
 {
-	long tmp;
+	long temp;
 
 	o->flmd.space = 0;
 	o->flmd.plus = 0;
-	init_long_argm(o, &tmp);
-	if (tmp == LLONG_MIN || tmp == LONG_MIN)
+	init_long_argm(o, &temp);
+	if (temp == LLONG_MIN || temp == LONG_MIN)
 		o->out = ft_strdup("-9223372036854775808");
 	else if (type == 'D' || type == 'U' || o->mod == L ||
 			o->mod == T || o->mod == J || o->mod == LL
 			|| o->mod == L1)
-		o->out = ft_ultoa((unsigned long)tmp);
+		o->out = ft_ultoa((unsigned long)temp);
 	else if (o->mod == Z)
-		o->out = ft_ltoa((long)tmp);
+		o->out = ft_ltoa((long)temp);
 	else if (o->mod == H)
-		o->out = ft_ltoa((unsigned short)tmp);
+		o->out = ft_ltoa((unsigned short)temp);
 	else if (o->mod == HH)
-		o->out = ft_ultoa((unsigned char)tmp);
+		o->out = ft_ultoa((unsigned char)temp);
 	else if (o->mod == NOMOD && type != 'U')
-		o->out = ft_ultoa((unsigned int)tmp);
+		o->out = ft_ultoa((unsigned int)temp);
 	digit_print(o);
 }

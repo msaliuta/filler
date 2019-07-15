@@ -6,22 +6,22 @@
 /*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 04:25:11 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/08 19:12:33 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/15 14:35:11 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	init_long_double(t_pf_env *o, long double *tmp)
+void	init_long_double(t_pf_env *o, long double *temp)
 {
 	if (o->tag.tag)
 	{
 		va_copy(o->ap[0], o->ap[1]);
 		while (--o->tag.pos >= 0)
-			*tmp = va_arg(o->ap[0], long double);
+			*temp = va_arg(o->ap[0], long double);
 		return ;
 	}
-	*tmp = va_arg(o->ap[0], long double);
+	*temp = va_arg(o->ap[0], long double);
 }
 
 void	check_form(t_pf_env *o, long double d, char tnt)
@@ -52,13 +52,13 @@ void	check_form(t_pf_env *o, long double d, char tnt)
 
 void	process_dgt_sign(t_pf_env *o)
 {
-	char *tmp;
+	char *temp;
 
 	if (o->out[0] == '-')
 	{
-		tmp = ft_strdup(o->out + 1);
+		temp = ft_strdup(o->out + 1);
 		free(o->out);
-		o->out = tmp;
+		o->out = temp;
 		o->flmd.space = 0;
 		o->flmd.plus = 0;
 		o->flmd.neg = 1;
@@ -67,7 +67,7 @@ void	process_dgt_sign(t_pf_env *o)
 
 void	process_dgt_prec(t_pf_env *o)
 {
-	char	*tmp;
+	char	*temp;
 	char	*res;
 	int		len;
 	int		i;
@@ -79,11 +79,11 @@ void	process_dgt_prec(t_pf_env *o)
 	else if (o->flmd.prec > len)
 	{
 		i = o->flmd.prec - len;
-		tmp = ft_strnew(i);
+		temp = ft_strnew(i);
 		while (i-- > 0)
-			tmp[i] = '0';
-		res = ft_strjoin(tmp, o->out);
-		free(tmp);
+			temp[i] = '0';
+		res = ft_strjoin(temp, o->out);
+		free(temp);
 		free(o->out);
 		o->out = res;
 	}

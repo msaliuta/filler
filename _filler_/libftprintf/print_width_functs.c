@@ -6,7 +6,7 @@
 /*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 04:25:14 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/08 19:12:33 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/15 14:35:11 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	bpw_check(t_pf_env *o, char type)
 
 void	check_prec_base(t_pf_env *o, char type)
 {
-	char	*tmp;
+	char	*temp;
 	char	*res;
 	int		len;
 	int		i;
@@ -65,11 +65,11 @@ void	check_prec_base(t_pf_env *o, char type)
 		if ((type == 'o' || type == 'O') && o->flmd.hash)
 			o->flmd.prec--;
 		i = o->flmd.prec - len;
-		tmp = ft_strnew(i);
+		temp = ft_strnew(i);
 		while (--i >= 0)
-			tmp[i] = '0';
-		res = ft_strjoin(tmp, o->out);
-		free(tmp);
+			temp[i] = '0';
+		res = ft_strjoin(temp, o->out);
+		free(temp);
 		free(o->out);
 		o->out = res;
 	}

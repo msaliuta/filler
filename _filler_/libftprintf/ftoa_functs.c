@@ -6,7 +6,7 @@
 /*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 10:43:23 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/08 20:19:29 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/15 14:35:11 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ftoa_a(t_pf_env *o, double d, char type)
 {
 	char	*frac;
 	char	*ep;
-	char	*tmp;
+	char	*temp;
 
 	d == 0 ? frac = ft_strdup("0") : hex_prec(o, d, &frac, type);
 	if (d != 0)
@@ -26,9 +26,9 @@ void	ftoa_a(t_pf_env *o, double d, char type)
 		o->out = (d == 0 ? ft_strjoin("0", ep) : ft_strjoin("1", ep));
 	else
 	{
-		tmp = (d == 0 ? ft_strdup(frac) : ft_strjoin("1.", frac));
-		o->out = ft_strjoin(tmp, ep);
-		free(tmp);
+		temp = (d == 0 ? ft_strdup(frac) : ft_strjoin("1.", frac));
+		o->out = ft_strjoin(temp, ep);
+		free(temp);
 	}
 	free(frac);
 	free(ep);
@@ -42,7 +42,7 @@ void	ftoa_a(t_pf_env *o, double d, char type)
 
 void	ftoa_e(t_pf_env *o, long double d, char type, int prec)
 {
-	char	*tmp;
+	char	*temp;
 	char	*nb;
 	char	*expo;
 	long	num;
@@ -60,46 +60,46 @@ void	ftoa_e(t_pf_env *o, long double d, char type, int prec)
 		num = 0;
 		nb = ft_strdup("0000000");
 	}
-	tmp = (d < 0 ? ft_str_prec(nb, 2, prec + 1, o->flmd.hash)
+	temp = (d < 0 ? ft_str_prec(nb, 2, prec + 1, o->flmd.hash)
 	: ft_str_prec(nb, 1, prec, o->flmd.hash));
-	o->out = ft_strjoin(tmp, expo);
+	o->out = ft_strjoin(temp, expo);
 	free(nb);
-	free(tmp);
+	free(temp);
 	free(expo);
 }
 
 void	ftoa_fg(t_pf_env *o, long double d, int end, long num)
 {
-	char	*tmp;
+	char	*temp;
 	char	*nb;
 	int		prec;
 
-	tmp = ft_ltoa((long)d);
-	end -= ft_strlen(tmp) - 1;
+	temp = ft_ltoa((long)d);
+	end -= ft_strlen(temp) - 1;
 	if (d == 0)
 	{
 		--o->flmd.prec;
 		--end;
 	}
-	prec = ft_strlen(tmp);
+	prec = ft_strlen(temp);
 	num = get_prec_num_f(d, end);
 	if (num == 0)
 		nb = ft_strdup("0000000");
 	else
 		nb = ft_ftoa(num);
 	if ((end <= prec || d == (long)d) && o->flmd.hash == 0)
-		o->out = ft_strdup(tmp);
+		o->out = ft_strdup(temp);
 	else
 		o->out = ft_str_prec(nb, prec, end, 0);
 	if (!o->flmd.hash && d - (long)d != 0)
 		delete_zero(o->out);
-	free(tmp);
+	free(temp);
 	free(nb);
 }
 
 void	ftoa_eg(t_pf_env *o, long double d, char type, int prec)
 {
-	char	*tmp;
+	char	*temp;
 	char	*nb;
 	char	*expo;
 	long	num;
@@ -110,27 +110,27 @@ void	ftoa_eg(t_pf_env *o, long double d, char type, int prec)
 	nb = ft_ftoa(num);
 	get_exponent(d, type, &expo, 0);
 	if (d < 0)
-		tmp = ft_str_prec(nb, 2, prec + 1, o->flmd.hash);
+		temp = ft_str_prec(nb, 2, prec + 1, o->flmd.hash);
 	else
-		tmp = ft_str_prec(nb, 1, prec, o->flmd.hash);
+		temp = ft_str_prec(nb, 1, prec, o->flmd.hash);
 	if (!o->flmd.hash)
-		delete_zero(tmp);
-	o->out = ft_strjoin(tmp, expo);
+		delete_zero(temp);
+	o->out = ft_strjoin(temp, expo);
 	free(nb);
-	free(tmp);
+	free(temp);
 	free(expo);
 }
 
 void	ftoa_f(t_pf_env *o, long double d, long num)
 {
-	char	*tmp;
+	char	*temp;
 	char	*nb;
 	int		prec;
 
-	tmp = ft_ltoa((long)d);
+	temp = ft_ltoa((long)d);
 	if (d == 0)
 		--o->flmd.prec;
-	prec = ft_strlen(tmp);
+	prec = ft_strlen(temp);
 	if (o->flmd.prec >= 0)
 		num = get_prec_num_f(d, o->flmd.prec);
 	else
@@ -140,12 +140,12 @@ void	ftoa_f(t_pf_env *o, long double d, long num)
 	else
 		nb = ft_ftoa(num);
 	if (o->flmd.prec == 0 && o->flmd.hash)
-		o->out = ft_strjoin(tmp, ".");
+		o->out = ft_strjoin(temp, ".");
 	else if (o->flmd.prec == 0 && !o->flmd.hash)
-		o->out = ft_strdup(tmp);
+		o->out = ft_strdup(temp);
 	else
 		o->out = ft_str_prec(nb, prec, o->flmd.prec >= 0 ?
 		prec + o->flmd.prec : prec + 6, o->flmd.hash);
 	free(nb);
-	free(tmp);
+	free(temp);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 14:29:43 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/14 14:26:48 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/15 20:28:28 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,25 @@
 int		main(void)
 {
 	char		*line;
-	t_visual	*v;
+	t_visual	*vis;
 
-	v = ft_memalloc(sizeof(t_visual));
-	read_p(v);
+	vis = ft_memalloc(sizeof(t_visual));
+	read_p(vis);
 	while (1)
 	{
-		if (LINES * COLS != v->term_size)
-			size_check(v, line);
 		get_next_line(0, &line);
-		if (v->m_heigth == 0 && ft_strstr(line, "Plateau"))
-			init_wins(line, v);
+		if (vis->h == 0 && ft_strstr(line, "Plateau"))
+			init_wins(line, vis);
 		if (ft_strstr(line, "0123456789"))
 		{
-			show_map(v);
-			//show_scale(v->scale, v->p1_points, v->p2_points);
+			show_maps(vis);
+			show_res_tab(vis->res_tab, vis->score1, vis->score2);
 		}
 		if (ft_strstr(line, "== X"))
 			break ;
 		ft_strdel(&line);
-		usleep(-100 * (v->m_heigth - 100));
+		usleep(-100 * (vis->h - 100));
 	}
-	//show_winner(v->p1_points, v->p2_points, v);
-	over(v);
+	winner(vis->score1, vis->score2, vis);
 	return (0);
 }

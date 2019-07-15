@@ -6,7 +6,7 @@
 /*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 04:25:19 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/08 20:44:23 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/15 14:35:11 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 char	*ft_ftoa(long double d)
 {
 	char	*s;
-	long	tmp;
+	long	temp;
 	int		len;
 	int		neg;
 
 	neg = (d < 0 ? -1 : 1);
 	len = (d < 0 ? 1 : 0);
 	d *= neg;
-	tmp = (long)d;
-	while (tmp > 0 && len++ >= 0)
-		tmp /= 10;
+	temp = (long)d;
+	while (temp > 0 && len++ >= 0)
+		temp /= 10;
 	while (d - (long)d != 0 && len++ >= 0)
 		d *= 10;
 	s = ft_strnew(len);
@@ -60,13 +60,13 @@ void	nan_inf(t_pf_env *o, char type, double var)
 	++o->i;
 }
 
-void	delete_zero(char *tmp)
+void	delete_zero(char *temp)
 {
 	int		i;
 
-	i = ft_strlen(tmp);
-	while (--i >= 0 && tmp[i] == '0')
-		tmp[i] = '\0';
+	i = ft_strlen(temp);
+	while (--i >= 0 && temp[i] == '0')
+		temp[i] = '\0';
 }
 
 void	hex_prec(t_pf_env *o, double d, char **frac, char type)

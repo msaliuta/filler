@@ -6,7 +6,7 @@
 /*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 04:25:21 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/08 19:12:33 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/15 14:35:11 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,16 +79,16 @@ void	wstr_min_print(t_pf_env *o, wchar_t *wchr, int len)
 			o->ret = write(o->fd, " ", 1);
 }
 
-void	wstr_init(t_pf_env *o, wchar_t **tmp)
+void	wstr_init(t_pf_env *o, wchar_t **temp)
 {
 	if (o->tag.tag)
 	{
 		va_copy(o->ap[0], o->ap[1]);
 		while (--o->tag.pos >= 0)
-			*tmp = va_arg(o->ap[0], wchar_t *);
+			*temp = va_arg(o->ap[0], wchar_t *);
 		return ;
 	}
-	*tmp = va_arg(o->ap[0], wchar_t *);
+	*temp = va_arg(o->ap[0], wchar_t *);
 }
 
 void	print_wstr(t_pf_env *o, wchar_t *wchr)

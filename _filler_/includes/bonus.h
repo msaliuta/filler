@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 16:07:29 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/14 14:52:29 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/15 20:28:28 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,37 +17,39 @@
 # include <locale.h>
 # include "libft.h"
 
-# define BRIGHT_WHITE  15
-# define COLOR_PINK "\033[1;35m"
-# define COLOR_RESET "\033[0m"
 # define DELAY 10000
-# define SCALE_LEN 40
-# define LBL_IND 15
-# define GREEN_LEAF "\xF0\x9F\x99\x80"
-# define RED_LEAF "\xF0\x9F\x99\x88"
+# define LEN_RES 70
+# define SP 5
+# define CAT "\xF0\x9F\x99\x80"
+# define MONKEY "\xF0\x9F\x99\x88"
 
 typedef struct	s_visual
 {
-	WINDOW		*map;
-	int			m_heigth;
-	int			m_width;
+	WINDOW		*maps;
+	int			h;
+	int			w;
 	int			term_size;
-	WINDOW		*scale;
-	char		*p1_name;
-	char		*p2_name;
-	int			p1_points;
-	int			p2_points;
+	WINDOW		*res_tab;
+	char		*p1;
+	char		*p2;
+	int			score1;
+	int			score2;
 }				t_visual;
 
-void			show_map(t_visual *v);
-void			show_scale(WINDOW *scale, int p1, int p2);
-void			show_winner(int p1, int p2, t_visual *v);
-void			show(t_visual *v);
-void	        size_check(t_visual *v, char *line);
-void        	over(t_visual *v);
-void	        read_p(t_visual *v);
-void	        print_line(char *line, int i, t_visual *v);
-void	        init_wins(char *line, t_visual *v);
-void	        read_sizes(char *line, t_visual *v);
+void			show_maps(t_visual *vis);
+void			show_res_tab(WINDOW *res_tab, int p1, int p2);
+void			winner(int p1, int p2, t_visual *vis);
+void			show(t_visual *vis);
+void	        print_line(char *line, int i, t_visual *vis);
+void	        read_p(t_visual *vis);
+void	        read_sizes(char *line, t_visual *vis);
+
+/*
+**tab_res.c
+*/
+
+void 			init_colors(void);
+void			result_board(t_visual *vis);
+void	        init_wins(char *line, t_visual *vis);
 
 #endif

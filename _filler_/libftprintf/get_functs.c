@@ -6,7 +6,7 @@
 /*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 04:25:08 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/08 20:44:08 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/15 14:35:11 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ long	get_prec_num_f(long double d, int prec)
 
 void	get_a_expo(double d, char type, char **expo)
 {
-	char	*tmp;
+	char	*temp;
 	char	pre[3];
 	int		i;
 
@@ -46,15 +46,15 @@ void	get_a_expo(double d, char type, char **expo)
 			d /= 2;
 		++i;
 	}
-	tmp = ft_itoa(i);
-	*expo = ft_strjoin(pre, tmp);
-	free(tmp);
+	temp = ft_itoa(i);
+	*expo = ft_strjoin(pre, temp);
+	free(temp);
 }
 
 void	get_exponent(long double d, char type, char **expo, int ex)
 {
-	char	*tmp0;
-	char	*tmp1;
+	char	*temp0;
+	char	*temp1;
 
 	if (d < 0)
 		d *= -1;
@@ -71,13 +71,13 @@ void	get_exponent(long double d, char type, char **expo, int ex)
 		ex--;
 	}
 	if (ex > 9 || ex < -9)
-		tmp0 = ft_strjoin(type == 'e' ? "e" : "E", ex < 0 ? "-" : "+");
+		temp0 = ft_strjoin(type == 'e' ? "e" : "E", ex < 0 ? "-" : "+");
 	else
-		tmp0 = ft_strjoin(type == 'e' ? "e" : "E", ex < 0 ? "-0" : "+0");
-	tmp1 = ft_itoa(ex < 0 ? ex * -1 : ex);
-	*expo = ft_strjoin(tmp1, tmp1);
-	free(tmp0);
-	free(tmp1);
+		temp0 = ft_strjoin(type == 'e' ? "e" : "E", ex < 0 ? "-0" : "+0");
+	temp1 = ft_itoa(ex < 0 ? ex * -1 : ex);
+	*expo = ft_strjoin(temp1, temp1);
+	free(temp0);
+	free(temp1);
 }
 
 long	get_prec_num_e(long double d, int prec)

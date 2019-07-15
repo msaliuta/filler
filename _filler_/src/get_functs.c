@@ -1,40 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_line.c                                       :+:      :+:    :+:   */
+/*   get_functs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/13 16:05:50 by msaliuta          #+#    #+#             */
+/*   Created: 2019/07/15 14:12:06 by msaliuta          #+#    #+#             */
 /*   Updated: 2019/07/15 20:28:28 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bonus.h"
+#include "../includes/filler.h"
 
-void	print_line(char *line, int i, t_visual *vis)
+void			get_p(t_maps *maps)
 {
-	int	j;
+	char		*str;
 
-	j = 3;
-	while (++j < vis->w + 4)
+	get_next_line(0, &str);
+	maps->me = (ft_strstr(str, "p1") ? "Oo" : "Xx");
+	maps->op = (ft_strstr(maps->me, "Oo") ? "Xx" : "Oo");
+}
+
+int				get_the_ret(t_maps *maps, t_token *p)
+{
+	char		*line;
+
+	p->token = NULL;
+	while (get_next_line(0, &line) > 0)
 	{
-		if (line[j] == 'x')
-			wattron(vis->maps, COLOR_PAIR(1));
-		else if (line[j] == 'o')
-			wattron(vis->maps, COLOR_PAIR(1));
-		if (line[j] == 'O' || line[j] == 'o')
+		if (ft_strncmp(line, "Plateau", 6) == 0)
 		{
-			mvwaddstr(vis->maps, i + 1, 2 * j - 6, CAT);
-			vis->score1++;
+			check_maps(line, maps);
+			ft_strdel(&line);
 		}
-		else if (line[j] == 'X' || line[j] == 'x')
+		else if (ft_strncmp(line, "Piece", 4) == 0)
 		{
-			mvwaddstr(vis->maps, i + 1, 2 * j - 6, MONKEY);
-			vis->score2++;
+			check_token_size(line, p);
+			return (1);
 		}
 		else
-			mvwaddstr(vis->maps, i + 1, 2 * j - 6, ". ");
-		wattron(vis->maps, COLOR_PAIR(3));
+			ft_strdel(&line);
 	}
+	return (0);
 }

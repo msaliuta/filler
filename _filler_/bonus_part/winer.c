@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_line.c                                       :+:      :+:    :+:   */
+/*   winer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/13 16:05:50 by msaliuta          #+#    #+#             */
+/*   Created: 2019/07/15 19:01:01 by msaliuta          #+#    #+#             */
 /*   Updated: 2019/07/15 20:28:28 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bonus.h"
 
-void	print_line(char *line, int i, t_visual *vis)
+void	winner(int p1, int p2, t_visual *vis)
 {
-	int	j;
+	char	*text;
+	char	*n;
 
-	j = 3;
-	while (++j < vis->w + 4)
+	if (p1 > p2)
 	{
-		if (line[j] == 'x')
-			wattron(vis->maps, COLOR_PAIR(1));
-		else if (line[j] == 'o')
-			wattron(vis->maps, COLOR_PAIR(1));
-		if (line[j] == 'O' || line[j] == 'o')
-		{
-			mvwaddstr(vis->maps, i + 1, 2 * j - 6, CAT);
-			vis->score1++;
-		}
-		else if (line[j] == 'X' || line[j] == 'x')
-		{
-			mvwaddstr(vis->maps, i + 1, 2 * j - 6, MONKEY);
-			vis->score2++;
-		}
-		else
-			mvwaddstr(vis->maps, i + 1, 2 * j - 6, ". ");
-		wattron(vis->maps, COLOR_PAIR(3));
+		text = ft_strjoin(vis->p1, " WON!");
+		n = ft_itoa(p1 - p2);
 	}
+	else
+	{
+		text = ft_strjoin(vis->p2, " WON!");
+		n = ft_itoa(p2 - p1);
+	}
+	text = ft_strjoin(text, " by a margin of ");
+	text = ft_strjoin(text, n);
+	wattron(vis->res_tab, A_BOLD | COLOR_PAIR(5));
+	mvwaddstr(vis->res_tab, 8, 35 - ft_strlen(text) / 2, text);
+	wrefresh(vis->res_tab);
+	freopen("/dev/tty", "r", stdin);
+	getch();
+	delwin(vis->maps);
+	delwin(vis->res_tab);
+	endwin();
 }

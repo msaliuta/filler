@@ -51,81 +51,81 @@ class Plateau
 		end
 	end
 
-	def gene_piece()
+	def gene_token()
 
 		if (rand(100) == 0)
 			ratio = rand(100)
-			@piece_row = rand((@map_row - 1) * ratio / 100) + 1
+			@token_row = rand((@map_row - 1) * ratio / 100) + 1
 			ratio = rand(100)
-			@piece_col = rand((@map_col - 1) * ratio / 100) + 1
+			@token_col = rand((@map_col - 1) * ratio / 100) + 1
 		else
-			@piece_row = rand((@map_row - 1) / 5) + 1
-			@piece_col = rand((@map_col - 1) / 5) + 1
+			@token_row = rand((@map_row - 1) / 5) + 1
+			@token_col = rand((@map_col - 1) / 5) + 1
 		end
 
-		@piece_row = @piece_row.to_i
-		@piece_col = @piece_col.to_i
-		@piece_content = ""
-		for i in 0..(@piece_row * @piece_col)
-			@piece_content += "."
+		@token_row = @token_row.to_i
+		@token_col = @token_col.to_i
+		@token_content = ""
+		for i in 0..(@token_row * @token_col)
+			@token_content += "."
 		end
-		@piece_content[(y = rand(@piece_row)) * @piece_col + (x = rand(@piece_col))] = '*'
+		@token_content[(y = rand(@token_row)) * @token_col + (x = rand(@token_col))] = '*'
 
 		p = 0
 		i = 4
-		if (y + 1 < @piece_row && rand(i) == 1)
-			@piece_content[(y + 1) * @piece_col + (x)] = '*'
+		if (y + 1 < @token_row && rand(i) == 1)
+			@token_content[(y + 1) * @token_col + (x)] = '*'
 			p += 1
 		end
-		if (x + 1 < @piece_col && rand(i) == 1)
-			@piece_content[(y) * @piece_col + (x + 1)] = '*'
+		if (x + 1 < @token_col && rand(i) == 1)
+			@token_content[(y) * @token_col + (x + 1)] = '*'
 			p += 1
 		end
 		if (x - 1 > 0 && rand(i) == 1)
-			@piece_content[(y) * @piece_col + (x - 1)] = '*'
+			@token_content[(y) * @token_col + (x - 1)] = '*'
 			p += 1
 		end
 		if (y - 1 > 0 && rand(i) == 1)
-			@piece_content[(y - 1) * @piece_col + (x)] = '*'
+			@token_content[(y - 1) * @token_col + (x)] = '*'
 			p += 1
 		end
 
 		i = 4
-		if (y + 1 < @piece_row && x + 1 < @piece_col && rand(i) == 1)
-			@piece_content[(y + 1) * @piece_col + (x + 1)] = '*'
+		if (y + 1 < @token_row && x + 1 < @token_col && rand(i) == 1)
+			@token_content[(y + 1) * @token_col + (x + 1)] = '*'
 			p += 1
 		end
-		if (y - 1 > 0 && x + 1 < @piece_col && rand(i) == 1)
-			@piece_content[(y - 1) * @piece_col + (x + 1)] = '*'
+		if (y - 1 > 0 && x + 1 < @token_col && rand(i) == 1)
+			@token_content[(y - 1) * @token_col + (x + 1)] = '*'
 			p += 1
 		end
-		if (y + 1 < @piece_row && x - 1 > 0 && rand(i) == 1)
-			@piece_content[(y + 1) * @piece_col + (x - 1)] = '*'
+		if (y + 1 < @token_row && x - 1 > 0 && rand(i) == 1)
+			@token_content[(y + 1) * @token_col + (x - 1)] = '*'
 			p += 1
 		end
 		if (y - 1 > 0 && x - 1 > 0 && rand(i) == 1)
-			@piece_content[(y - 1) * @piece_col + (x - 1)] = '*'
+			@token_content[(y - 1) * @token_col + (x - 1)] = '*'
 			p += 1
 		end
 
-		for i in 0..(@piece_row * @piece_col / 2)
-			y = rand(@piece_row)
-			x = rand(@piece_col)
-			if ((y + 1 < @piece_row && @piece_content[(y + 1) * @piece_col + (x)] == "*" ) ||
-				(x + 1 < @piece_col && @piece_content[(y) * @piece_col + (x + 1)] == "*" ) ||
-				(y - 1 > 0 && @piece_content[(y - 1) * @piece_col + (x)] == "*" ) ||
-				(x - 1 > 0 && @piece_content[(y) * @piece_col + (x - 1)] == "*"))
-				@piece_content[(y) * @piece_col + (x)] = '*'
+		for i in 0..(@token_row * @token_col / 2)
+			y = rand(@token_row)
+			x = rand(@token_col)
+			if ((y + 1 < @token_row && @token_content[(y + 1) * @token_col + (x)] == "*" ) ||
+				(x + 1 < @token_col && @token_content[(y) * @token_col + (x + 1)] == "*" ) ||
+				(y - 1 > 0 && @token_content[(y - 1) * @token_col + (x)] == "*" ) ||
+				(x - 1 > 0 && @token_content[(y) * @token_col + (x - 1)] == "*"))
+				@token_content[(y) * @token_col + (x)] = '*'
 				p += 1
 			end
 		end
 
 		if (p == 0)
-			gene_piece()
+			gene_token()
 		end
 	end
 
-	def show_mapcontent(fd, piece_char = nil, y = 0, x = 0)
+	def show_mapcontent(fd, token_char = nil, y = 0, x = 0)
 		fd.write "Plateau #{@map_row} #{@map_col}:\n"
 
 		fd.write "    "
@@ -143,15 +143,15 @@ class Plateau
 			end
 			fd.write row.to_s + " "
 
-			if (piece_char == nil || row < y || row >= (y + @piece_row))
+			if (token_char == nil || row < y || row >= (y + @token_row))
 				fd.write line + "\n"
 			else
 				col = 0
 				while (col < line.length)
 					if (col >= x &&
-						col < (x + @piece_col) &&
-						@piece_content[(row - y) * @piece_col + (col - x)] == '*')
-						fd.write piece_char
+						col < (x + @token_col) &&
+						@token_content[(row - y) * @token_col + (col - x)] == '*')
+						fd.write token_char
 					else
 						fd.write line[col]
 					end
@@ -162,36 +162,36 @@ class Plateau
 		end
 	end
 
-	def show_piececontent(fd)
-		fd.write "Piece #{@piece_row} #{@piece_col}:\n"
+	def show_tokencontent(fd)
+		fd.write "Piece #{@token_row} #{@token_col}:\n"
 
 		x = 0
-		for i in 0..(@piece_row - 1)
-			for l in 0..(@piece_col - 1)
-				fd.write "#{@piece_content[x]}"
+		for i in 0..(@token_row - 1)
+			for l in 0..(@token_col - 1)
+				fd.write "#{@token_content[x]}"
 				x = x + 1
 			end
 			fd.write "\n"
 		end
 	end
 
-	def piece_char(x, y)
-		@piece_content[y * @piece_col + x]
+	def token_char(x, y)
+		@token_content[y * @token_col + x]
 	end
 
 	def is_empty_line()
 
 		empty_lines = Array.new
 		x = 0
-		for i in 0..(@piece_row - 1)
+		for i in 0..(@token_row - 1)
 			empty = 0
-			for l in 0..(@piece_col - 1)
-				if (@piece_content[x] == '.')
+			for l in 0..(@token_col - 1)
+				if (@token_content[x] == '.')
 					empty = empty + 1
 				end
 				x = x + 1
 			end
-			if (empty == @piece_col)
+			if (empty == @token_col)
 				empty_lines.push(i)
 			end
 		end
@@ -200,14 +200,14 @@ class Plateau
 	def is_empty_col()
 
 		empty_cols = Array.new
-		for i in 0..(@piece_col - 1)
+		for i in 0..(@token_col - 1)
 			empty = 0
-			for j in 0..(@piece_row - 1)
-				if (@piece_content[i + @piece_col * j] == '.')
+			for j in 0..(@token_row - 1)
+				if (@token_content[i + @token_col * j] == '.')
 					empty = empty + 1
 				end
 			end
-			if empty == @piece_row
+			if empty == @token_row
 				empty_cols.push(i)
 			end
 		end
@@ -224,12 +224,12 @@ class Plateau
 
 		x = 0
 		i = 0
-		for y in 0..(@piece_row - 1)
-			for x in 0..(@piece_col - 1)
+		for y in 0..(@token_row - 1)
+			for x in 0..(@token_col - 1)
 				if ((y + row >= @map_row && empty_lines.include?(y) == false) || (x + col >= @map_col && empty_cols.include?(x) == false))
 					return 2
 				end
-				if (y + row < @map_row && x + col < @map_col && @map_table[y + row][x + col] != '.' && (tmp = piece_char(x, y)) != '.')
+				if (y + row < @map_row && x + col < @map_col && @map_table[y + row][x + col] != '.' && (temp = token_char(x, y)) != '.')
 					if (@map_table[y + row][x + col] == char)
 						i = i + 1
 					else
@@ -242,9 +242,9 @@ class Plateau
 	end
 
 	def change_data(row, col, char)
-		for y in 0..(@piece_row - 1)
-			for x in 0..(@piece_col - 1)
-				if (piece_char(x, y) == '*')
+		for y in 0..(@token_row - 1)
+			for x in 0..(@token_col - 1)
+				if (token_char(x, y) == '*')
 					@map_table[y + row][x + col] = char
 				end
 			end
@@ -260,11 +260,11 @@ class Plateau
 end
 
 class Player
-	attr_accessor :score, :piece_char, :score, :stdin, :live, :file_name
+	attr_accessor :score, :token_char, :score, :stdin, :live, :file_name
 
 	def initialize(path, char)
 		self.file_name = path
-		self.piece_char = char
+		self.token_char = char
 		self.score = 0
 		self.live = 1
 	end
@@ -320,7 +320,7 @@ class Player
 		end
 	end
 	def score_show()
-		puts "== #{self.piece_char} fin: " + self.score.to_s
+		puts "== #{self.token_char} fin: " + self.score.to_s
 		if @segfault != nil
 		   puts "#{self.file_name} #{@segfault}"
 		end
@@ -511,15 +511,15 @@ if __FILE__ == $0
 		while all_lose(players, trace)
 			for player in players
 				if (player.live > 0)
-					map.gene_piece()
+					map.gene_token()
                                   begin
 					if init.interactif == 0
 						map.show_mapcontent(player.stdin)
 					end
-					map.show_piececontent(player.stdin)
+					map.show_tokencontent(player.stdin)
 
 					if (init.verbose > 0 && init.interactif == 0)
-						map.show_piececontent($stdout)
+						map.show_tokencontent($stdout)
 					end
                                   rescue
                                     player.end_player(trace)
@@ -529,29 +529,29 @@ if __FILE__ == $0
 							@line = player.read_from_player()
 						end
 					rescue Timeout::Error
-						puts "Player with #{player.piece_char}: timedout"
-						trace.trace_msg "#{player.piece_char}: timedout\n"
+						puts "Player with #{player.token_char}: timedout"
+						trace.trace_msg "#{player.token_char}: timedout\n"
 						player.end_player trace
 					end
 					if (player.live > 0 && (nb = @line.gsub(/\s+/m, ' ').strip.split(" ")).length != 2)
-						puts "Player with #{player.piece_char}: error on input"
-						trace.trace_msg "#{player.piece_char}: error on input\n"
+						puts "Player with #{player.token_char}: error on input"
+						trace.trace_msg "#{player.token_char}: error on input\n"
 						player.end_player trace
 					end
 
 					if (player.live > 0 && init.verbose > 0)
-						puts "<got (#{player.piece_char}): [#{nb[0]}, #{nb[1]}]"
+						puts "<got (#{player.token_char}): [#{nb[0]}, #{nb[1]}]"
 					end
 
-					if (player.live > 0 && map.check_placement(nb[0].to_i, nb[1].to_i, player.piece_char) == 1)
-						map.change_data(nb[0].to_i, nb[1].to_i, player.piece_char)
+					if (player.live > 0 && map.check_placement(nb[0].to_i, nb[1].to_i, player.token_char) == 1)
+						map.change_data(nb[0].to_i, nb[1].to_i, player.token_char)
 						player.score += 1
 					else
 						player.end_player trace
 					end
 
 					if (init.verbose > 0 && player.live > 0)
-						map.show_mapcontent($stdout, player.piece_char.downcase, nb[0].to_i, nb[1].to_i)
+						map.show_mapcontent($stdout, player.token_char.downcase, nb[0].to_i, nb[1].to_i)
 					end
 				end
 			end

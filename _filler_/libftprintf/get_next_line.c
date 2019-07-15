@@ -6,7 +6,7 @@
 /*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 18:18:14 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/02/02 16:56:53 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/15 14:35:11 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,20 @@ int				linecpy(char **dst, char *src, char c)
 char			*adline(char **s1, char *s2)
 {
 	char	*str;
-	char	*tmp;
+	char	*temp;
 	size_t	i;
 	size_t	j;
 
-	tmp = *s1;
-	if (!tmp || !s2)
+	temp = *s1;
+	if (!temp || !s2)
 		return (NULL);
-	str = ft_strnew(ft_strlen(tmp) + ft_strlen(s2));
+	str = ft_strnew(ft_strlen(temp) + ft_strlen(s2));
 	if (!str)
 		return (NULL);
 	i = -1;
 	j = -1;
-	while (tmp[++i])
-		str[i] = tmp[i];
+	while (temp[++i])
+		str[i] = temp[i];
 	while (s2[++j])
 	{
 		str[i] = s2[j];
@@ -58,29 +58,29 @@ char			*adline(char **s1, char *s2)
 int				result(t_list **file, char *buf, int fd, char **line)
 {
 	int		i;
-	t_list	*tmp;
+	t_list	*temp;
 	char	*tpm;
 
-	tmp = *file;
+	temp = *file;
 	while ((i = read(fd, buf, BUFF_SIZE)) > 0)
 	{
 		buf[i] = '\0';
-		if (!(tmp->content = adline((char**)&tmp->content, buf)))
+		if (!(temp->content = adline((char**)&temp->content, buf)))
 			return (-1);
-		if (ft_strchr(tmp->content, '\n'))
+		if (ft_strchr(temp->content, '\n'))
 			break ;
 	}
-	if (i < BUFF_SIZE && !ft_strlen(tmp->content))
+	if (i < BUFF_SIZE && !ft_strlen(temp->content))
 		return (0);
-	if ((i = linecpy(line, tmp->content, '\n')) < (int)ft_strlen(tmp->content))
+	if ((i = linecpy(line, temp->content, '\n')) < (int)ft_strlen(temp->content))
 	{
-		tpm = ft_strdup(tmp->content + i + 1);
-		free(tmp->content);
-		if (!tpm || ((tmp->content = tpm) && 0))
+		tpm = ft_strdup(temp->content + i + 1);
+		free(temp->content);
+		if (!tpm || ((temp->content = tpm) && 0))
 			return (-1);
 	}
 	else
-		ft_strclr(tmp->content);
+		ft_strclr(temp->content);
 	return (1);
 }
 

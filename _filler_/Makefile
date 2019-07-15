@@ -6,7 +6,7 @@
 #    By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/13 16:12:17 by msaliuta          #+#    #+#              #
-#    Updated: 2019/07/14 18:12:13 by msaliuta         ###   ########.fr        #
+#    Updated: 2019/07/15 19:44:44 by msaliuta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,24 +18,17 @@ BNSD	=	bonus_part
 SRCD	=	src
 INCD	=	includes
 OBJD	=	objs
-BOJD	=	boun
+BOJD	=	bonus_part
 INCS	=	-I$(addprefix $(LIBD)/, $(INCD)) -I $(INCD)
-VISL	=	visualizer
-BNSS	=	init_wins.c\
-			main.c\
-			over.c\
-			print_line.c\
-			read_p.c\
-			read_s.c\
-			show.c\
-			size_check.c
 
 SRCS	=	main.c\
+			get_functs.c\
 			tools.c\
 			tools2.c\
 			ft_parcing.c\
 			play.c\
-			play2.c 
+			play2.c\
+			check_functs.c
 
 BOJS	=	$(addprefix $(BOJD)/, $(BNSS:.c=.o))
 OBJS	=	$(addprefix $(OBJD)/, $(SRCS:.c=.o))
@@ -44,6 +37,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@$(MAKE) -C $(LIBD)
+	@$(MAKE) -C $(BOJD)
 	@$(CMPL) $(CFLG) -o $(NAME) $^ -L$(LIBD) -lft $(INCS)
 	@echo "msaliuta.filler is ready"
 
@@ -53,10 +47,12 @@ $(OBJD)/%.o: $(SRCD)/%.c
 	@$(CMPL) $(CFLG) -o $@ -c $< $(INCS)
 
 clean:
+	@$(MAKE) -C $(BOJD) clean
 	@$(MAKE) -C $(LIBD) clean
 	@rm -rf $(OBJD)
 
 fclean: clean
+	@$(MAKE) -C $(BOJD) fclean
 	@$(MAKE) -C $(LIBD) fclean
 	@rm -f $(NAME)
 
@@ -65,12 +61,3 @@ re:
 	@$(MAKE) all
 
 .PHONY: all clean fclean re bonus
-
-bonus: $(VISL)
-
-$(VISL): $(BOJS)
-	$(CMPL) -o $(VISL) $^ -L$(LIBD) -lft -lncurses
-	
-$(BOJD)/%.o: $(BNSD)/%.c
-	mkdir -p $(BOJD)
-	$(CMPL) $(CFLG) -c $< -o $@ -L$(LIBD) $(INCS)

@@ -6,20 +6,13 @@
 /*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 10:24:05 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/14 20:25:57 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/15 20:34:33 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-int		is_number(char c)
-{
-	if (c >= 48 && c <= 57)
-		return (0);
-	return (1);
-}
-
-int		is_placable(int i, int i2, t_map *map, t_token *p)
+int		is_placable(int i, int i2, t_maps *maps, t_token *p)
 {
 	int j;
 	int j2;
@@ -27,18 +20,19 @@ int		is_placable(int i, int i2, t_map *map, t_token *p)
 
 	j = -1;
 	count = 0;
-	if (i + p->help.s_n > map->help.s_n || i2 + p->help.s_x > map->help.s_x)
+	if (i + p->help.s_n > maps->help.s_n || i2 + p->help.s_x > maps->help.s_x)
 		return (1);
 	while (++j <= (p->help.s_n - 1))
 	{
 		j2 = -1;
 		while (++j2 <= (p->help.s_x - 1))
 		{
-			if (p->piece[j][j2] == '*' && (map->map[i + j][i2 + j2] ==
-				map->op[0] || map->map[i + j][i2 + j2] == map->op[0] - 32))
+			if (p->token[j][j2] == '*' && (maps->field[i + j][i2 + j2] ==
+				maps->op[0] || maps->field[i + j][i2 + j2] == maps->op[0] - 32))
 				return (1);
-			((p->piece[j][j2] == '*') & (map->map[i + j][i2 + j2] == map->me[0]
-				| map->map[i + j][i2 + j2] == map->me[0] - 32)) ? count++ : 0;
+			if ((p->token[j][j2] == '*') & (maps->field[i + j][i2 + j2] == maps->me[0]
+				| maps->field[i + j][i2 + j2] == maps->me[0] - 32))
+				count++;
 		}
 	}
 	if (is_placable2(p, count, i, i2) == 0)
@@ -46,17 +40,17 @@ int		is_placable(int i, int i2, t_map *map, t_token *p)
 	return (1);
 }
 
-void	print_result(t_token *p, t_map *map)
+void	print_result(t_token *p, t_maps *maps)
 {
 	ft_putnbr(p->final_n);
 	ft_putchar(' ');
 	ft_putnbr(p->final_x);
 	ft_putchar('\n');
-	map->help.x = p->final_x;
-	map->help.n = p->final_n;
+	maps->help.x = p->final_x;
+	maps->help.n = p->final_n;
 }
 
-int		last_try(t_map *map, t_token *p)
+int		last_try(t_maps *maps, t_token *p)
 {
 	int	i;
 	int	i2;
@@ -66,15 +60,15 @@ int		last_try(t_map *map, t_token *p)
 	p->final_x = 0;
 	p->final_n = 0;
 	ret = 0;
-	while (++i < map->help.s_n - 1)
+	while (++i < maps->help.s_n - 1)
 	{
 		i2 = -1;
-		while (++i2 < map->help.s_x - 1)
+		while (++i2 < maps->help.s_x - 1)
 		{
-			ret = is_placable(i, i2, map, p);
+			ret = is_placable(i, i2, maps, p);
 			if (ret == 0)
 			{
-				print_result(p, map);
+				print_result(p, maps);
 				return (0);
 			}
 		}
@@ -82,22 +76,22 @@ int		last_try(t_map *map, t_token *p)
 	return (1);
 }
 
-void	init_struct(t_map *map, t_token *p)
+void	init_struct(t_maps *maps, t_token *p)
 {
-	map->map = NULL;
-	map->help.s_x = 0;
-	map->help.s_n = 0;
+	maps->field = NULL;
+	maps->help.s_x = 0;
+	maps->help.s_n = 0;
 	p->final_x = 0;
 	p->final_n = 0;
 	p->help.s_x = 0;
 	p->help.s_n = 0;
-	map->pos_enemy_x = 0;
-	map->pos_enemy_n = 0;
-	map->help.x = 0;
-	map->help.n = 0;
+	maps->opp_x = 0;
+	maps->opp_n = 0;
+	maps->help.x = 0;
+	maps->help.n = 0;
 	p->help.x = 0;
 	p->end_x = 0;
 	p->help.n = 0;
 	p->end_n = 0;
-	p->contact = 0;
+	p->touch = 0;
 }

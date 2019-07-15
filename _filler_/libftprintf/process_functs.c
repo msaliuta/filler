@@ -6,7 +6,7 @@
 /*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 04:25:22 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/08 19:12:33 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/15 14:35:11 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 void	process_base(t_pf_env *o, char type)
 {
-	long			tmp;
+	long			temp;
 	unsigned long	val;
 
 	val = 0;
-	init_long_argm(o, &tmp);
+	init_long_argm(o, &temp);
 	if (type == 'O' || o->mod == Z || o->mod == T ||
 		o->mod == J || o->mod == L || o->mod == LL)
-		val = (unsigned long)tmp;
+		val = (unsigned long)temp;
 	else if (o->mod == HH)
-		val = (unsigned char)tmp;
+		val = (unsigned char)temp;
 	else if (o->mod == H)
-		val = (unsigned short)tmp;
+		val = (unsigned short)temp;
 	else if (o->mod == NOMOD)
-		val = (unsigned int)tmp;
+		val = (unsigned int)temp;
 	if (type == 'b' || type == 'B')
 		o->out = ft_ultoa_base(val, 2);
 	if (type == 'o' || type == 'O')
@@ -42,26 +42,26 @@ void	process_base(t_pf_env *o, char type)
 
 void	process_return(t_pf_env *o)
 {
-	int	*tmp;
+	int	*temp;
 
 	if (o->tag.tag)
 	{
 		va_copy(o->ap[0], o->ap[1]);
 		while (--o->tag.pos >= 0)
-			tmp = va_arg(o->ap[0], int *);
+			temp = va_arg(o->ap[0], int *);
 	}
-	tmp = va_arg(o->ap[0], int *);
-	*tmp = o->ret;
+	temp = va_arg(o->ap[0], int *);
+	*temp = o->ret;
 	++o->i;
 }
 
 void	process_ptraddr(t_pf_env *o, char type)
 {
-	long			tmp;
+	long			temp;
 	unsigned long	addr;
 
-	init_long_argm(o, &tmp);
-	addr = (unsigned long)tmp;
+	init_long_argm(o, &temp);
+	addr = (unsigned long)temp;
 	if (o->flmd.prec == 0)
 		o->out = ft_strdup("\0");
 	else
@@ -71,19 +71,19 @@ void	process_ptraddr(t_pf_env *o, char type)
 
 void	process_nonprintable(t_pf_env *o)
 {
-	char	*tmp;
+	char	*temp;
 	int		i;
 
-	init_str_arg(o, &tmp);
+	init_str_arg(o, &temp);
 	i = -1;
 	while (++i < o->flmd.width)
 	{
-		if (tmp[i] >= 0 && tmp[i] <= 10)
-			print_first_dec(o, tmp[i]);
-		else if (tmp[i] >= 11 && tmp[i] <= 20)
-			print_second_dec(o, tmp[i]);
-		else if (tmp[i] >= 21 && tmp[i] <= 31)
-			print_pf_thirtd_dec(o, tmp[i]);
+		if (temp[i] >= 0 && temp[i] <= 10)
+			print_first_dec(o, temp[i]);
+		else if (temp[i] >= 11 && temp[i] <= 20)
+			print_second_dec(o, temp[i]);
+		else if (temp[i] >= 21 && temp[i] <= 31)
+			print_pf_thirtd_dec(o, temp[i]);
 		++o->ret;
 	}
 	++o->i;

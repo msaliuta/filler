@@ -6,7 +6,7 @@
 /*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 04:25:19 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/08 19:59:42 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/15 14:35:11 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ptraddr_prec(t_pf_env *o)
 {
-	char	*tmp;
+	char	*temp;
 	char	*res;
 	int		len;
 	int		i;
@@ -23,17 +23,17 @@ void	ptraddr_prec(t_pf_env *o)
 	len = (int)ft_strlen(o->out);
 	if (o->flmd.prec > len)
 	{
-		tmp = ft_strnew(o->flmd.prec - len);
+		temp = ft_strnew(o->flmd.prec - len);
 		while (++i < o->flmd.prec - len)
-			tmp[i] = '0';
-		res = ft_strjoin(tmp, o->out);
+			temp[i] = '0';
+		res = ft_strjoin(temp, o->out);
 		free(o->out);
-		free(tmp);
+		free(temp);
 		o->out = res;
 	}
-	tmp = ft_strjoin("0x", o->out);
+	temp = ft_strjoin("0x", o->out);
 	free(o->out);
-	o->out = tmp;
+	o->out = temp;
 }
 
 void	print_ptraddr_width(t_pf_env *o)
