@@ -6,7 +6,7 @@
 #    By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/13 16:12:17 by msaliuta          #+#    #+#              #
-#    Updated: 2019/07/17 06:47:45 by msaliuta         ###   ########.fr        #
+#    Updated: 2019/07/17 07:17:34 by msaliuta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,11 +23,10 @@ INCS	=	-I$(addprefix $(LIBD)/, $(INCD)) -I $(INCD)
 
 SRCS	=	main.c\
 			get_functs.c\
-			tools.c\
-			tools2.c\
-			ft_parcing.c\
+			help.c\
+			direct.c\
+			touch.c\
 			play.c\
-			play2.c\
 			check_functs.c
 
 BOJS	=	$(addprefix $(BOJD)/, $(BNSS:.c=.o))

@@ -6,7 +6,7 @@
 /*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 10:23:29 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/17 06:46:06 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/17 07:37:22 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int			main(void)
 	get_next_line(0, &str);
 	MM = (ft_strstr(str, "p1") ? "Oo" : "Xx");
 	MO = (ft_strstr(MM, "Oo") ? "Xx" : "Oo");
-	while (WORK && (get_the_ret(maps, p)))
+	while (WORK && (read_data(maps, p)))
 		if (play(maps, p))
 			last_try(maps, p) ? finish(p, maps) : 0;
 	return (0);
