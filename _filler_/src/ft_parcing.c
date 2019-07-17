@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parcing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 10:23:39 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/15 20:28:28 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/17 06:44:16 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void			get_strat_pos(t_maps *maps)
 		i2 = 0;
 		while (++i2 < (maps->help.s_x))
 		{
-			if ((maps->field[i3][i2] == maps->op[0] ||
-				maps->field[i3][i2] == maps->op[1]))
+			if ((maps->field[i3][i2] == MO[0] ||
+				maps->field[i3][i2] == MO[1]))
 			{
-				maps->opp_x = i2;
-				maps->opp_n = i3;
+				maps->help.oppx = i2;
+				maps->help.oppn = i3;
 			}
-			if ((maps->field[i3][i2] == maps->me[0] ||
-				maps->field[i3][i2] == maps->me[1]))
+			if ((maps->field[i3][i2] == MM[0] ||
+				maps->field[i3][i2] == MM[1]))
 			{
 				maps->help.x = i2;
 				maps->help.n = i3;
@@ -58,4 +58,3 @@ void			get_maps(t_maps *maps)
 	}
 	get_strat_pos(maps);
 }
-

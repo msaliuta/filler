@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_functs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 19:37:05 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/15 20:28:28 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/17 06:44:42 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,9 @@ void		parse_token(t_token *p)
 		ft_strdel(&str);
 	}
 	check_real_token_size(p);
-
 }
 
-void			check_maps(char *line, t_maps *maps)
+void		check_maps(char *line, t_maps *maps)
 {
 	int			i;
 	int			temp;

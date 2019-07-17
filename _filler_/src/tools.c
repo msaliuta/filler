@@ -3,40 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 10:24:05 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/15 20:34:33 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/17 06:42:05 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-int		is_placable(int i, int i2, t_maps *maps, t_token *p)
+int		is_placable(int i, int j, t_maps *maps, t_token *p)
 {
-	int j;
-	int j2;
+	int x;
+	int y;
 	int count;
 
-	j = -1;
+	x = -1;
 	count = 0;
-	if (i + p->help.s_n > maps->help.s_n || i2 + p->help.s_x > maps->help.s_x)
+	if (i + p->help.s_n > maps->help.s_n || j + p->help.s_x > maps->help.s_x)
 		return (1);
-	while (++j <= (p->help.s_n - 1))
-	{
-		j2 = -1;
-		while (++j2 <= (p->help.s_x - 1))
+	while (++x <= (p->help.s_n - 1) && (y = -1))
+		while (++y <= p->help.s_x - 1)
 		{
-			if (p->token[j][j2] == '*' && (maps->field[i + j][i2 + j2] ==
-				maps->op[0] || maps->field[i + j][i2 + j2] == maps->op[0] - 32))
+			if (PT[x][y] == '*' && (MF[i + x][j + y] ==
+				MO[0] || MF[i + x][j + y] == MO[0] - 32))
 				return (1);
-			if ((p->token[j][j2] == '*') & (maps->field[i + j][i2 + j2] == maps->me[0]
-				| maps->field[i + j][i2 + j2] == maps->me[0] - 32))
+			if ((PT[x][y] == '*') & (MF[i + x][j + y] == MM[0]
+				| MF[i + x][j + y] == MM[0] - 32))
 				count++;
 		}
-	}
-	if (is_placable2(p, count, i, i2) == 0)
+	if (count == 1)
+	{
+		p->final_x = j;
+		p->final_n = i;
 		return (0);
+	}
 	return (1);
 }
 
@@ -60,38 +61,9 @@ int		last_try(t_maps *maps, t_token *p)
 	p->final_x = 0;
 	p->final_n = 0;
 	ret = 0;
-	while (++i < maps->help.s_n - 1)
-	{
-		i2 = -1;
+	while (++i < maps->help.s_n - 1 && (i2 = -1))
 		while (++i2 < maps->help.s_x - 1)
-		{
-			ret = is_placable(i, i2, maps, p);
-			if (ret == 0)
-			{
-				print_result(p, maps);
+			if ((ret = check_place(i, i2, maps, p)) == 0)
 				return (0);
-			}
-		}
-	}
 	return (1);
-}
-
-void	init_struct(t_maps *maps, t_token *p)
-{
-	maps->field = NULL;
-	maps->help.s_x = 0;
-	maps->help.s_n = 0;
-	p->final_x = 0;
-	p->final_n = 0;
-	p->help.s_x = 0;
-	p->help.s_n = 0;
-	maps->opp_x = 0;
-	maps->opp_n = 0;
-	maps->help.x = 0;
-	maps->help.n = 0;
-	p->help.x = 0;
-	p->end_x = 0;
-	p->help.n = 0;
-	p->end_n = 0;
-	p->touch = 0;
 }

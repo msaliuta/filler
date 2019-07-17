@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filler.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 13:24:46 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/15 20:34:33 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/17 06:47:26 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,20 @@
 
 # include "libft.h"
 
-typedef struct 		s_help
+# define WORK 42
+# define MM maps->me
+# define MO maps->op
+# define PT p->token
+# define MF maps->field
+
+typedef struct		s_help
 {
 	int				x;
-	int 			n;
+	int				n;
 	int				s_x;
 	int				s_n;
+	int				oppx;
+	int				oppn;
 }					t_help;
 
 typedef struct		s_token
@@ -42,11 +50,10 @@ typedef struct		s_maps
 	t_help			help;
 	char			**field;
 	char			*op;
-	int				opp_x;
-	int				opp_n;
 	char			*me;
 }					t_maps;
 
+void				finish(t_token *p, t_maps *maps);
 void				check_token_size(char *line, t_token *p);
 void				check_real_token_size(t_token *p);
 void				parse_token(t_token *p);
@@ -55,10 +62,8 @@ void				parse_token(t_token *p);
 **get_functs.c.c
 */
 
-void				get_p(t_maps *maps);
 void				check_maps(char *line, t_maps *maps);
 int					get_the_ret(t_maps *maps, t_token *p);
-
 
 /*
 **ft_parcing.c
@@ -71,6 +76,7 @@ void				get_maps(t_maps *maps);
 **play.c
 */
 
+int					check_place(int i, int i2, t_maps *maps, t_token *p);
 int					go_touch1(t_maps *maps, t_token *p);
 int					go_touch2(t_maps *maps, t_token *p);
 int					big_maps(t_maps *maps, t_token *p);
@@ -81,7 +87,7 @@ int					play(t_maps *maps, t_token *p);
 **play2.c
 */
 
-void				get_touch(t_token *p, t_maps *maps);
+int					get_touch(t_maps *maps);
 int					count_touch(t_maps *maps, t_token *p, int y, int x);
 int					algo3(t_maps *maps, t_token *p);
 int					left_down(t_maps *maps, t_token *p);
@@ -94,14 +100,11 @@ int					right_down(t_maps *maps, t_token *p);
 int					is_placable(int i, int i2, t_maps *maps, t_token *p);
 void				print_result(t_token *p, t_maps *maps);
 int					last_try(t_maps *maps, t_token *p);
-void				init_struct(t_maps *maps, t_token *p);
 
 /*
 **tools2.c
 */
 
-int					is_placable2(t_token *p, int count, int i, int i2);
-int					algo3_2(int nbr_touch, t_token *p, t_maps *maps);
 int					left_top(t_maps *maps, t_token *p);
 int					right_top(t_maps *maps, t_token *p);
 

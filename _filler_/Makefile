@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/13 16:12:17 by msaliuta          #+#    #+#              #
-#    Updated: 2019/07/15 19:44:44 by msaliuta         ###   ########.fr        #
+#    Updated: 2019/07/17 06:47:45 by msaliuta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	resources/players/msaliuta.filler
+NAME	=	msaliuta.filler
 CMPL	=	cc
 CFLG	=	$(addprefix -W, all extra error)
 LIBD	=	libftprintf
