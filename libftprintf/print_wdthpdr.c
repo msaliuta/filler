@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_wdthpdr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 04:25:19 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/15 14:35:11 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/17 07:49:00 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ptraddr_prec(t_pf_env *o)
 {
-	char	*temp;
+	char	*tmp;
 	char	*res;
 	int		len;
 	int		i;
@@ -23,17 +23,17 @@ void	ptraddr_prec(t_pf_env *o)
 	len = (int)ft_strlen(o->out);
 	if (o->flmd.prec > len)
 	{
-		temp = ft_strnew(o->flmd.prec - len);
+		tmp = ft_strnew(o->flmd.prec - len);
 		while (++i < o->flmd.prec - len)
-			temp[i] = '0';
-		res = ft_strjoin(temp, o->out);
+			tmp[i] = '0';
+		res = ft_strjoin(tmp, o->out);
 		free(o->out);
-		free(temp);
+		free(tmp);
 		o->out = res;
 	}
-	temp = ft_strjoin("0x", o->out);
+	tmp = ft_strjoin("0x", o->out);
 	free(o->out);
-	o->out = temp;
+	o->out = tmp;
 }
 
 void	print_ptraddr_width(t_pf_env *o)

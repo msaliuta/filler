@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmaps.c                                        :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 18:37:32 by msaliuta          #+#    #+#             */
-/*   Updated: 2018/10/30 18:37:34 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/17 07:48:41 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmaps(char const *s, char (*f)(char))
+char	*ft_strmap(char const *s, char (*f)(char))
 {
 	int		i;
-	char	*mapspedstr;
+	char	*mappedstr;
 
 	if (s == NULL || f == NULL)
 		return (NULL);
-	mapspedstr = (char*)malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (mapspedstr == NULL)
+	mappedstr = (char*)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (mappedstr == NULL)
 		return (NULL);
 	i = -1;
 	while (s[++i])
 	{
-		mapspedstr[i] = f(s[i]);
+		mappedstr[i] = f(s[i]);
 	}
-	mapspedstr[i] = '\0';
-	return (mapspedstr);
+	mappedstr[i] = '\0';
+	return (mappedstr);
 }

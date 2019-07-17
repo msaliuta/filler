@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_mfw.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 07:06:53 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/15 14:35:11 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/17 07:49:00 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	parse_mfw(const char *restrict frmt, t_pf_env *o)
 {
 	int	i;
-	int temp;
+	int tmp;
 
 	i = 0;
 	o->flmd.space = 0;
@@ -28,13 +28,13 @@ void	parse_mfw(const char *restrict frmt, t_pf_env *o)
 	o->flmd.width = 0;
 	if (INUM(frmt[o->i]))
 	{
-		temp = ft_atoi(frmt + o->i);
+		tmp = ft_atoi(frmt + o->i);
 		while (INUM(frmt[o->i + i]))
 			i++;
 		if (frmt[o->i + i] == '$')
 		{
 			o->tag.tag = 1;
-			o->tag.pos = temp;
+			o->tag.pos = tmp;
 			o->i += i + 1;
 		}
 	}

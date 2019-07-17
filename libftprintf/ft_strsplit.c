@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/04 16:31:55 by msaliuta          #+#    #+#             */
-/*   Updated: 2018/11/04 16:32:11 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/17 07:49:00 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 static size_t	ft_get_size_array(char const *s, char c)
 {
 	size_t		size_array;
-	char const	*temp_s;
+	char const	*tmp_s;
 
 	size_array = 0;
-	temp_s = s;
-	while (*temp_s != '\0')
+	tmp_s = s;
+	while (*tmp_s != '\0')
 	{
-		if (*temp_s != c && (*(temp_s - 1) == c || (temp_s - 1) < s))
+		if (*tmp_s != c && (*(tmp_s - 1) == c || (tmp_s - 1) < s))
 			size_array++;
-		temp_s++;
+		tmp_s++;
 	}
 	return (size_array);
 }

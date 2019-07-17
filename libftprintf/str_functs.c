@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_functs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 04:25:20 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/15 14:35:11 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/17 07:49:00 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ void	str_for_print(t_pf_env *o, int n)
 
 void	str_print(t_pf_env *o)
 {
-	char	*temp;
+	char	*tmp;
 
 	if (o->flmd.prec >= 0 && o->flmd.prec < (int)ft_strlen(o->out))
 	{
-		temp = ft_strsub(o->out, 0, (o->flmd.prec));
+		tmp = ft_strsub(o->out, 0, (o->flmd.prec));
 		free(o->out);
-		o->out = temp;
+		o->out = tmp;
 	}
 	if (o->flmd.minus)
 	{
@@ -63,46 +63,46 @@ void	str_print(t_pf_env *o)
 	free(o->out);
 }
 
-void	init_str_arg(t_pf_env *o, char **temp)
+void	init_str_arg(t_pf_env *o, char **tmp)
 {
 	if (o->tag.tag)
 	{
 		va_copy(o->ap[0], o->ap[1]);
 		while (o->tag.pos >= 0)
 		{
-			*temp = va_arg(o->ap[0], char *);
+			*tmp = va_arg(o->ap[0], char *);
 			o->tag.pos--;
 		}
 		return ;
 	}
-	*temp = va_arg(o->ap[0], char *);
+	*tmp = va_arg(o->ap[0], char *);
 }
 
 char	*ft_str_prec(char *s1, int dot, int end, int hash)
 {
-	char	*temp;
+	char	*tmp;
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	temp = ft_strnew(ft_strlen(s1) + 1);
+	tmp = ft_strnew(ft_strlen(s1) + 1);
 	while (s1[i] != '\0')
 	{
-		temp[j++] = s1[i];
+		tmp[j++] = s1[i];
 		if ((i == dot - 1 && end > 0) || hash == 1)
 		{
-			temp[j++] = '.';
+			tmp[j++] = '.';
 			hash = 0;
 		}
 		if (i >= end)
 		{
-			temp[j] = '\0';
+			tmp[j] = '\0';
 			break ;
 		}
 		i++;
 	}
-	return (temp);
+	return (tmp);
 }
 
 void	prrint_wstr_1(t_pf_env *o, char c)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/04 13:27:33 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/15 20:28:28 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/17 07:48:41 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ void				ft_strdel(char **as);
 void				ft_strclr(char *s);
 void				ft_striter(char *s, void (*f)(char *));
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
-char				*ft_strmaps(char const *s, char (*f)(char));
-char				*ft_strmapsi(char const *s, char (*f)(unsigned int, char));
+char				*ft_strmap(char const *s, char (*f)(char));
+char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int					ft_strequ(char const *s1, char const *s2);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
@@ -92,7 +92,7 @@ void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lst_push_back(t_list **alst, t_list *new);
 size_t				ft_lst_size(t_list *alst);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
-t_list				*ft_lstmaps(t_list *lst, t_list *(*f)(t_list *elem));
+t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void				ft_strlower(char *s);
 char				*ft_ltoa(long n);
 char				*ft_ltoa_base(long n, int base);

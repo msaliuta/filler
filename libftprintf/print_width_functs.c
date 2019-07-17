@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_width_functs.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 04:25:14 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/15 14:35:11 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/17 07:49:00 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	bpw_check(t_pf_env *o, char type)
 
 void	check_prec_base(t_pf_env *o, char type)
 {
-	char	*temp;
+	char	*tmp;
 	char	*res;
 	int		len;
 	int		i;
@@ -65,11 +65,11 @@ void	check_prec_base(t_pf_env *o, char type)
 		if ((type == 'o' || type == 'O') && o->flmd.hash)
 			o->flmd.prec--;
 		i = o->flmd.prec - len;
-		temp = ft_strnew(i);
+		tmp = ft_strnew(i);
 		while (--i >= 0)
-			temp[i] = '0';
-		res = ft_strjoin(temp, o->out);
-		free(temp);
+			tmp[i] = '0';
+		res = ft_strjoin(tmp, o->out);
+		free(tmp);
 		free(o->out);
 		o->out = res;
 	}

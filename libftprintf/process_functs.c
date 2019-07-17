@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_functs.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 04:25:22 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/15 14:35:11 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/17 07:49:00 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 void	process_base(t_pf_env *o, char type)
 {
-	long			temp;
+	long			tmp;
 	unsigned long	val;
 
 	val = 0;
-	init_long_argm(o, &temp);
+	init_long_argm(o, &tmp);
 	if (type == 'O' || o->mod == Z || o->mod == T ||
 		o->mod == J || o->mod == L || o->mod == LL)
-		val = (unsigned long)temp;
+		val = (unsigned long)tmp;
 	else if (o->mod == HH)
-		val = (unsigned char)temp;
+		val = (unsigned char)tmp;
 	else if (o->mod == H)
-		val = (unsigned short)temp;
+		val = (unsigned short)tmp;
 	else if (o->mod == NOMOD)
-		val = (unsigned int)temp;
+		val = (unsigned int)tmp;
 	if (type == 'b' || type == 'B')
 		o->out = ft_ultoa_base(val, 2);
 	if (type == 'o' || type == 'O')
@@ -42,26 +42,26 @@ void	process_base(t_pf_env *o, char type)
 
 void	process_return(t_pf_env *o)
 {
-	int	*temp;
+	int	*tmp;
 
 	if (o->tag.tag)
 	{
 		va_copy(o->ap[0], o->ap[1]);
 		while (--o->tag.pos >= 0)
-			temp = va_arg(o->ap[0], int *);
+			tmp = va_arg(o->ap[0], int *);
 	}
-	temp = va_arg(o->ap[0], int *);
-	*temp = o->ret;
+	tmp = va_arg(o->ap[0], int *);
+	*tmp = o->ret;
 	++o->i;
 }
 
 void	process_ptraddr(t_pf_env *o, char type)
 {
-	long			temp;
+	long			tmp;
 	unsigned long	addr;
 
-	init_long_argm(o, &temp);
-	addr = (unsigned long)temp;
+	init_long_argm(o, &tmp);
+	addr = (unsigned long)tmp;
 	if (o->flmd.prec == 0)
 		o->out = ft_strdup("\0");
 	else
@@ -71,19 +71,19 @@ void	process_ptraddr(t_pf_env *o, char type)
 
 void	process_nonprintable(t_pf_env *o)
 {
-	char	*temp;
+	char	*tmp;
 	int		i;
 
-	init_str_arg(o, &temp);
+	init_str_arg(o, &tmp);
 	i = -1;
 	while (++i < o->flmd.width)
 	{
-		if (temp[i] >= 0 && temp[i] <= 10)
-			print_first_dec(o, temp[i]);
-		else if (temp[i] >= 11 && temp[i] <= 20)
-			print_second_dec(o, temp[i]);
-		else if (temp[i] >= 21 && temp[i] <= 31)
-			print_pf_thirtd_dec(o, temp[i]);
+		if (tmp[i] >= 0 && tmp[i] <= 10)
+			print_first_dec(o, tmp[i]);
+		else if (tmp[i] >= 11 && tmp[i] <= 20)
+			print_second_dec(o, tmp[i]);
+		else if (tmp[i] >= 21 && tmp[i] <= 31)
+			print_pf_thirtd_dec(o, tmp[i]);
 		++o->ret;
 	}
 	++o->i;

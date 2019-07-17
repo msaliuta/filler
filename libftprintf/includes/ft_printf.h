@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/15 18:17:20 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/15 14:35:11 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/17 07:49:00 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,16 +102,16 @@ void			parse_prec(t_pf_env *o, char type);
 **int_funct.c
 */
 
-void			init_long_argm(t_pf_env *o, long *temp);
+void			init_long_argm(t_pf_env *o, long *tmp);
 void			process_int(t_pf_env *o);
-void			init_double_argm(t_pf_env *o, double *temp);
+void			init_double_argm(t_pf_env *o, double *tmp);
 void			process_unsint(t_pf_env *o, char type);
 
 /*
 **longd_funct.c
 */
 
-void			init_long_double(t_pf_env *o, long double *temp);
+void			init_long_double(t_pf_env *o, long double *tmp);
 void			check_form(t_pf_env *o, long double d, char tnt);
 void			process_dgt_sign(t_pf_env *o);
 void			process_dgt_prec(t_pf_env *o);
@@ -152,14 +152,14 @@ void			prec_width_print(t_pf_env *o);
 
 void			char_for_ptint(t_pf_env *o, int n);
 void			process_char(t_pf_env *o, char type);
-void			init_char_arg(t_pf_env *o, int *temp);
+void			init_char_arg(t_pf_env *o, int *tmp);
 void			char_print(t_pf_env *o, char c);
 
 /*
 **str_functs.c
 */
 
-void			init_str_arg(t_pf_env *o, char **temp);
+void			init_str_arg(t_pf_env *o, char **tmp);
 void			str_print(t_pf_env *o);
 void			str_for_print(t_pf_env *o, int n);
 char			*ft_str_prec(char *s1, int dot, int end, int hash);
@@ -180,7 +180,7 @@ void			ftoa_f(t_pf_env *o, long double d, long num);
 */
 
 void			print_wchar(t_pf_env *o, wchar_t wc);
-void			wchar_init(t_pf_env *o, wchar_t *temp);
+void			wchar_init(t_pf_env *o, wchar_t *tmp);
 void			process_wchar(t_pf_env *o, char type);
 void			prrint_wchar_1(t_pf_env *o, char c);
 void			check_wchar(t_pf_env *o, wchar_t c);
@@ -192,7 +192,7 @@ void			check_wchar(t_pf_env *o, wchar_t c);
 void			wstr_min_print(t_pf_env *o, wchar_t *wc, int len);
 int				get_wstr_len(wchar_t *wc);
 void			print_wstr(t_pf_env *o, wchar_t *wc);
-void			wstr_init(t_pf_env *o, wchar_t **temp);
+void			wstr_init(t_pf_env *o, wchar_t **tmp);
 void			check_wstr(t_pf_env *o, wchar_t c);
 
 /*
@@ -234,7 +234,7 @@ void			print_invalid_spec(t_pf_env *o, char c);
 */
 
 void			hex_prec(t_pf_env *o, double d, char **frac, char type);
-void			delete_zero(char *temp);
+void			delete_zero(char *tmp);
 void			nan_inf(t_pf_env *o, char type, double var);
 char			*ft_ftoa(long double d);
 

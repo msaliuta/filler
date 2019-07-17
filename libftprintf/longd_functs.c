@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   longd_functs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 04:25:11 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/15 14:35:11 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/17 07:49:00 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	init_long_double(t_pf_env *o, long double *temp)
+void	init_long_double(t_pf_env *o, long double *tmp)
 {
 	if (o->tag.tag)
 	{
 		va_copy(o->ap[0], o->ap[1]);
 		while (--o->tag.pos >= 0)
-			*temp = va_arg(o->ap[0], long double);
+			*tmp = va_arg(o->ap[0], long double);
 		return ;
 	}
-	*temp = va_arg(o->ap[0], long double);
+	*tmp = va_arg(o->ap[0], long double);
 }
 
 void	check_form(t_pf_env *o, long double d, char tnt)
@@ -52,13 +52,13 @@ void	check_form(t_pf_env *o, long double d, char tnt)
 
 void	process_dgt_sign(t_pf_env *o)
 {
-	char *temp;
+	char *tmp;
 
 	if (o->out[0] == '-')
 	{
-		temp = ft_strdup(o->out + 1);
+		tmp = ft_strdup(o->out + 1);
 		free(o->out);
-		o->out = temp;
+		o->out = tmp;
 		o->flmd.space = 0;
 		o->flmd.plus = 0;
 		o->flmd.neg = 1;
@@ -67,7 +67,7 @@ void	process_dgt_sign(t_pf_env *o)
 
 void	process_dgt_prec(t_pf_env *o)
 {
-	char	*temp;
+	char	*tmp;
 	char	*res;
 	int		len;
 	int		i;
@@ -79,11 +79,11 @@ void	process_dgt_prec(t_pf_env *o)
 	else if (o->flmd.prec > len)
 	{
 		i = o->flmd.prec - len;
-		temp = ft_strnew(i);
+		tmp = ft_strnew(i);
 		while (i-- > 0)
-			temp[i] = '0';
-		res = ft_strjoin(temp, o->out);
-		free(temp);
+			tmp[i] = '0';
+		res = ft_strjoin(tmp, o->out);
+		free(tmp);
 		free(o->out);
 		o->out = res;
 	}
