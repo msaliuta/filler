@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+         #
+#    By: msaliuta <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/04 13:27:45 by msaliuta          #+#    #+#              #
-#    Updated: 2019/07/18 18:09:32 by msaliuta         ###   ########.fr        #
+#    Updated: 2019/07/15 20:29:22 by msaliuta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,8 +100,7 @@ SRCS	=	ft_bzero \
     get_functs \
     print_wdthpdr \
     print_prec_tools \
-    ft_arrclr \
-    ft_atoi_base\
+    ft_arrclr 
 
 OBJS	=	$(addprefix obj/, $(addsuffix .o, $(SRCS)))
 

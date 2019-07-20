@@ -5,32 +5,58 @@
 #                                                     +:+ +:+         +:+      #
 #    By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/05/22 16:56:22 by lramirez          #+#    #+#              #
-#    Updated: 2019/07/20 16:49:18 by msaliuta         ###   ########.fr        #
+#    Created: 2019/07/13 16:12:17 by msaliuta          #+#    #+#              #
+#    Updated: 2019/07/17 07:17:34 by msaliuta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME=fdf
-CC=gcc
-SRC=./srcs/main.c ./srcs/errors.c ./srcs/key_input.c ./srcs/bresenham.c ./srcs/ft_fill_tab.c ./srcs/ft_math.c
-OBJ=main.o errors.o key_input.o bresenham.o ft_fill_tab.o ft_math.o
-FLAGS=-Wall -Wextra -Werror
-LIB=./libftprintf/libft.a
-MLX=-L ./miniLibx -l mlx -framework OpenGL -framework AppKit
+NAME	=	msaliuta.filler
+CMPL	=	cc
+CFLG	=	$(addprefix -W, all extra error)
+LIBD	=	libftprintf
+BNSD	=	bonus_part
+SRCD	=	src
+INCD	=	includes
+OBJD	=	objs
+BOJD	=	bonus_part
+INCS	=	-I$(addprefix $(LIBD)/, $(INCD)) -I $(INCD)
+
+SRCS	=	main.c\
+			get_functs.c\
+			help.c\
+			direct.c\
+			touch.c\
+			play.c\
+			check_functs.c
+
+BOJS	=	$(addprefix $(BOJD)/, $(BNSS:.c=.o))
+OBJS	=	$(addprefix $(OBJD)/, $(SRCS:.c=.o))
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	@ make -C ./libftprintf
-	@ $(CC) $(FLAGS) $(OBJ) -o $(NAME) $(MLX) $(LIB)
-$(OBJ): $(SRC)
-	@ $(CC) $(FLAGS) -c $(SRC)
-clean:
-	@ rm -f $(OBJ)
-	@ make -C ./libftprintf clean
-fclean: clean
-	@ rm -f $(NAME)
-	@ make -C ./libftprintf fclean
-re: fclean all
+$(NAME): $(OBJS)
+	@$(MAKE) -C $(LIBD)
+	@$(MAKE) -C $(BOJD)
+	@$(CMPL) $(CFLG) -o $(NAME) $^ -L$(LIBD) -lft $(INCS)
+	@echo "msaliuta.filler is ready"
 
-.PHONY: clean, fclean, re
+$(OBJD)/%.o: $(SRCD)/%.c
+	@echo ".\c"
+	@mkdir -p $(OBJD)
+	@$(CMPL) $(CFLG) -o $@ -c $< $(INCS)
+
+clean:
+	@$(MAKE) -C $(BOJD) clean
+	@$(MAKE) -C $(LIBD) clean
+	@rm -rf $(OBJD)
+
+fclean: clean
+	@$(MAKE) -C $(BOJD) fclean
+	@$(MAKE) -C $(LIBD) fclean
+	@rm -f $(NAME)
+
+re:
+	@$(MAKE) fclean
+	@$(MAKE) all
+
+.PHONY: all clean fclean re bonus
