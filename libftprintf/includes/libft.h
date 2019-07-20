@@ -6,17 +6,27 @@
 /*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/04 13:27:33 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/17 07:48:41 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/18 18:09:42 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdbool.h>
+# include <stdio.h>
+# include <stdint.h>
+# include <stdarg.h>
+# include <string.h>
+# include <strings.h>
+# include <fcntl.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <wchar.h>
 # include <limits.h>
+# include <pthread.h>
 # include "get_next_line.h"
 # include "ft_printf.h"
 
@@ -28,6 +38,7 @@ typedef	struct		s_list
 }					t_list;
 
 int					ft_min(int a, int b);
+int					ft_atoi_base(const char *s, int base);
 int					ft_max(int a, int b);
 void				*ft_memset(void *memptr, int val, size_t num);
 void				ft_bzero(void *s, size_t n);
