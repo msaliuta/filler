@@ -6,7 +6,7 @@
 /*   By: msaliuta <msaliuta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 10:23:29 by msaliuta          #+#    #+#             */
-/*   Updated: 2019/07/17 07:37:22 by msaliuta         ###   ########.fr       */
+/*   Updated: 2019/07/21 13:28:09 by msaliuta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int			play(t_maps *maps, t_token *p)
 void		finish(t_token *p, t_maps *maps)
 {
 	print_result(p, maps);
-	exit(1);
 	free(PT);
 	free(maps);
 	free(p);
+	exit(1);
 }
